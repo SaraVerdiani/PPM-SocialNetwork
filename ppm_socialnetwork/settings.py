@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'feed',
     'crispy_forms',
     'crispy_bootstrap5'
 ]
@@ -125,7 +126,7 @@ AUTH_USER_MODEL = 'users.User'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-LOGIN_REDIRECT_URL = 'users:signup'
+LOGIN_REDIRECT_URL = 'feed:home'
 LOGIN_URL = 'users:login'
 
 STATICFILES_DIRS = [BASE_DIR / 'static']

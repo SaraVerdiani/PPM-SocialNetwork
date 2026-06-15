@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Accedi - PPM Social{% endblock %}
+
+{% block content %}
+<div class="center d-flex justify-content-center align-items-center">
+
+    <div class="col-12 col-md-10 col-lg-5">
+
+        <div class="card shadow-sm">
+            <div class="card-body p-5">
+
+                <h2 class="mb-4 text-center">Log In</h2>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+
+                    <button type="submit" class="btn btn-primary w-100 mt-4">Submit</button>
+                </form>
+
+                <div class="mt-4 text-center">
+                    <p>Need to sign up? <a href="{% url 'users:signup' %}">Register here</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

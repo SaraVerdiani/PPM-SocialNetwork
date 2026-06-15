@@ -124,3 +124,8 @@ AUTH_USER_MODEL = 'users.User'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+LOGIN_REDIRECT_URL = 'users:signup'
+LOGIN_URL = 'users:login'
+
+STATICFILES_DIRS = [BASE_DIR / 'static']

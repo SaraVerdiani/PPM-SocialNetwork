@@ -54,6 +54,7 @@ a {
 
 .side-content {
     top: 85px;
+    width: 100%;
 }
 
 .sidebar-link {
@@ -109,12 +110,100 @@ a {
     border-radius: 10px;
     font-weight: 500;
     transition: background-color 0.2s;
-    width: 300px;
-    max-width: 300px;
+    width: 100%;
     white-space: nowrap;
+    color: white;
 }
 
 .btn-create-post:hover {
     background-color: #1257ae;
     color: white;
+}
+
+
+.feed-wrapper {
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 2rem;
+    padding-right: 0.5rem;
+}
+
+.feed-wrapper::-webkit-scrollbar { display: none; }
+.feed-wrapper { -ms-overflow-style: none; scrollbar-width: none; }
+
+.custom-scroll-col {
+    height: auto;
+    overflow: visible;
+}
+
+
+.post-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.post-card-img {
+    border-radius: 12px;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+@media (min-width: 992px) {
+    .sidebar-link {
+        font-size: 1.5rem;
+    }
+
+    .sidebar-link .bi {
+        font-size: 1.6rem;
+    }
+
+    .btn-create-post {
+        font-size: 1.2rem;
+        padding: 0.6rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sidebar-link {
+        font-size: 1.5rem;
+    }
+
+    .sidebar-link .bi {
+        font-size: 2rem;
+    }
+
+    .sidebar-badge {
+        font-size: 1rem;
+    }
+
+    .btn-create-post {
+        font-size: 1.3rem;
+        padding: 0.75rem;
+    }
+
+    .feed-wrapper {
+        height: auto;
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    .custom-scroll-col {
+        height: calc(100vh - 100px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 2rem;
+        padding-right: 0.5rem;
+    }
+
+    .custom-scroll-col::-webkit-scrollbar { display: none; }
+    .custom-scroll-col { -ms-overflow-style: none; scrollbar-width: none; }
 }

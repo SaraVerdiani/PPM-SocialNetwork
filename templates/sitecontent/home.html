@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Home - SocialNetwork{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block navbar %}
 <nav class="navbar sticky-top shadow-sm px-4 flex-nowrap">
@@ -34,10 +34,8 @@
     </div>
 </nav>
 {% endblock %}
-{% block content %}
-<main class="row mt-4">
-
-   <aside class="d-none d-md-block col-md-4 col-lg-2">
+{% block sidebar %}
+   <aside class="d-none d-lg-block col-lg-2">
 
     <div class="side-content position-sticky d-flex flex-column gap-4">
 
@@ -72,11 +70,32 @@
             <span>Profile</span>
         </a>
 
-        <button class="btn btn-create-post text-white py-2 mt-3 shadow-sm fs-5">
+        <button class="btn btn-create-post mt-3">
             Add Post
         </button>
     </div>
 </aside>
+{% endblock %}
+{% block content %}
+<div class="col-12 col-lg-10 px-md-5">
 
-</main>
+    <div class="feed-wrapper">
+        <div class="row g-4">
+
+            <div class="col-12 col-xl-6 custom-scroll-col">
+                {% include 'sitecontent/post.html' %}
+                {% include 'sitecontent/post.html' %}
+                {% include 'sitecontent/post.html' %}
+            </div>
+
+            <div class="col-12 col-xl-6 custom-scroll-col">
+                {% include 'sitecontent/post.html' %}
+                {% include 'sitecontent/post.html' %}
+                {% include 'sitecontent/post.html' %}
+            </div>
+
+        </div>
+    </div>
+
+</div>
 {% endblock %}

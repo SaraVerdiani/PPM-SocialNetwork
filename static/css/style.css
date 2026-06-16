@@ -1,8 +1,120 @@
 :root {
-    --navbar-grey: #f0f2f5;
+    --background-gray: #f0f2f5;
+    --title-color: #0b1c3c;
+    --button-grey: #cdd0d1;
+    --button-blue: #1877f2;
 }
-
 
 .center {
     min-height: 80vh;
+}
+
+body {
+    background-color: var(--background-gray)
+}
+
+a {
+    text-decoration: none;
+}
+.brand-icon {
+    color: var(--title-color);
+    font-size: 1.8rem;
+}
+
+.brand-text {
+    color: var(--title-color);
+    font-size: 1.4rem;
+}
+
+.nav-icon {
+    font-size: 1.3rem;
+}
+
+.nav-icon-btn {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-icon-btn:hover {
+    transform: scale(1.15);
+}
+
+.notification-badge {
+    font-size: 0.65rem;
+    padding: 0.25em 0.4em;
+}
+
+.profile-name {
+    font-size: 0.95rem;
+}
+
+.profile-handle {
+    font-size: 0.8rem;
+}
+
+.side-content {
+    top: 85px;
+}
+
+.sidebar-link {
+    border-radius: 12px;
+    transition: var(--button-grey) 0.2s ease-in-out;
+}
+
+.sidebar-link:hover {
+    background-color: var(--button-grey);
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    transition: background-color 0.2s ease-in-out;
+    color: var(--title-color) !important;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+.notification-dot {
+    width: 10px;
+    height: 10px;
+    margin-top: 5px;
+    margin-left: -5px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    padding: 0.25rem;
+    background-color: #dc3545;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+
+.sidebar-link .bi {
+    font-size: 2rem;
+}
+
+.sidebar-link.active {
+    font-weight: bold;
+}
+
+.sidebar-badge {
+    background-color: #e4e6eb;
+    font-size: 2.5rem;
+}
+
+.btn-create-post {
+    background-color: var(--button-blue);
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    width: 300px;
+    max-width: 300px;
+    white-space: nowrap;
+}
+
+.btn-create-post:hover {
+    background-color: #1257ae;
+    color: white;
 }

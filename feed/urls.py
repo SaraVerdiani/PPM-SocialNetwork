@@ -1,10 +1,11 @@
 from django.urls import path
 
-from feed.views import HomeView, ProfileView
+from feed import views
+from feed.views import HomeView
 
 app_name = 'feed'
 
 urlpatterns = [
     path('home/', HomeView.as_view(), name='home'),
-    path('profile/', ProfileView.as_view(), name='profile'),
+    path('profile/', views.profile_view, name='profile'),
 ]

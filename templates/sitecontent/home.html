@@ -3,16 +3,38 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="col-12 col-lg-10 px-md-5">
+<div class="col-12 col-lg-10 px-md-5 py-4">
     <div class="feed-wrapper">
-        <div class="row g-4">
-            <div class="col-12 col-xl-6 custom-scroll-col">
+
+        {% if posts %}
+            <div class="row g-4">
+
+                <div class="col-12 col-xl-6 custom-scroll-col">
+                    {% for post in posts %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            {% include 'sitecontent/post.html' with post=post %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="col-12 col-xl-6 custom-scroll-col">
+                    {% for post in posts %}
+                        {% if not forloop.counter0|divisibleby:2 %}
+                            {% include 'sitecontent/post.html' with post=post %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
             </div>
-            <div class="col-12 col-xl-6 custom-scroll-col">
 
+        {% else %}
+            <div class="text-center text-muted p-5 mt-4 border rounded-3 bg-light shadow-sm">
+                <i class="bi bi-journal-text fs-1"></i>
+                <p class="mt-3 fs-5">Feed is empty. Be the first to write something!</p>
             </div>
-        </div>
+
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

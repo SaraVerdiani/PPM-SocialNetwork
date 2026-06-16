@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'feed',
+    'posts',
     'crispy_forms',
     'crispy_bootstrap5'
 ]
@@ -133,3 +134,6 @@ LOGOUT_REDIRECT_URL = 'users:login'
 
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

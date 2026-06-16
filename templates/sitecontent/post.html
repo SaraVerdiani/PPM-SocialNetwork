@@ -1,29 +1,33 @@
-<div class="post-card p-4 p-md-4 mb-4">
+<div class="post-card p-4 p-md-4 mb-4 border rounded-3 bg-white shadow-sm">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <div class="d-flex align-items-center gap-3">
-            <img src="https://picsum.photos/seed/user1/50/50" class="rounded-circle object-fit-cover" width="45" height="45" alt="Avatar">
-            <div class="lh-1">
-                <span class="fw-bold d-block mb-1 text-dark">User</span>
-                <span class="text-muted small">@user • location, state • time</span>
-            </div>
+
+            
+           <a href="{% url 'users:profile' post.author.username %}" class="d-flex align-items-center gap-3 text-decoration-none">
+               <img src="https://ui-avatars.com/api/?name={{ post.author.username }}&background=0D8ABC&color=fff" class="rounded-circle object-fit-cover" width="45" height="45" alt="Avatar">
+               <div class="lh-1">
+                   <span class="fw-bold d-block mb-1 text-dark">{{ post.author.username }}</span>
+                   <span class="text-muted small">@{{ post.author.username|lower }} • {{ post.created_at|date:"d M Y, H:i" }}</span>
+               </div>
+           </a>
         </div>
         <i class="bi bi-three-dots fs-5 text-muted cursor-pointer"></i>
     </div>
-    
-    <img src="https://picsum.photos/seed/post1/600/400" class="post-card-img mb-3" alt="Post">
-    
-    <div class="d-flex gap-4 mb-3">
+
+    <div class="post-content mb-4 mt-3 px-2">
+        <p class="mb-0 text-dark fs-5" style="white-space: pre-wrap; word-break: break-word;">
+            {{ post.description }}
+        </p>
+    </div>
+
+    <div class="d-flex gap-4 mb-2 border-top pt-3">
         <div class="d-flex align-items-center gap-2 cursor-pointer text-danger">
-            <i class="bi bi-heart-fill fs-5"></i>
-            <span class="fw-bold">142</span>
+            <i class="bi bi-heart fs-5"></i>
+            <span class="fw-bold">{{ post.likes.count }}</span>
         </div>
         <div class="d-flex align-items-center gap-2 cursor-pointer text-dark">
             <i class="bi bi-chat fs-5"></i>
-            <span class="fw-medium">28</span>
+            <span class="fw-medium">0</span>
         </div>
     </div>
-    
-    <p class="mb-0 text-dark">
-        Text text text
-    </p>
 </div>

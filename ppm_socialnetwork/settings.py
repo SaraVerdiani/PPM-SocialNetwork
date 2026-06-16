@@ -129,5 +129,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = 'feed:home'
 LOGIN_URL = 'users:login'
 
-STATICFILES_DIRS = [BASE_DIR / 'static',
-                    ]
+LOGOUT_REDIRECT_URL = 'users:login'
+
+STATICFILES_DIRS = [BASE_DIR / 'static',]
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

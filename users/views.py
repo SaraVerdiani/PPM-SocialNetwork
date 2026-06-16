@@ -1,6 +1,8 @@
+from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -21,3 +23,14 @@ class SignUpView(SuccessMessageMixin, CreateView):
 
 class MyLoginView(LoginView):
     template_name = 'users/login.html'
+
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+
+        messages.success(request, "Logged out successfully")
+
+        return redirect('users:login')
+
+    return redirect('feed:home')

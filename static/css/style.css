@@ -3,6 +3,9 @@
     --title-color: #0b1c3c;
     --button-grey: #cdd0d1;
     --button-blue: #1877f2;
+    --notification-red: #dc3545;
+    --button-hover: #1257ae;
+    --button-border: #1a56db;
 }
 
 .center {
@@ -87,8 +90,8 @@ a {
     left: 100%;
     transform: translate(-50%, -50%);
     padding: 0.25rem;
-    background-color: #dc3545;
-    border: 1px solid #fff;
+    background-color: var(--notification-red);
+    border: 1px solid white;
     border-radius: 50%;
 }
 
@@ -116,7 +119,7 @@ a {
 }
 
 .btn-create-post:hover {
-    background-color: #1257ae;
+    background-color: var(--button-hover);
     color: white;
 }
 
@@ -139,7 +142,7 @@ a {
 
 
 .post-card {
-    background-color: #ffffff;
+    background-color: white;
     border: none;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -154,6 +157,56 @@ a {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.profile-header {
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.profile-avatar {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    background-color: #f8f9fa;
+}
+
+.profile-bio p {
+    font-size: 0.95rem;
+}
+
+.btn-edit-profile {
+    background-color: var(--button-blue);
+    border-color: var(--button-border);
+    transition: background-color 0.2s ease;
+}
+
+.btn-edit-profile:hover {
+    background-color: var(--button-hover);
+    border-color: var(--button-border);
+}
+
+.profile-grid-img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.profile-grid-img:hover {
+    filter: brightness(0.9);
+}
+
+
+@media (max-width: 768px) {
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .btn-edit-profile {
+        width: 100% !important;
+    }
 }
 
 

@@ -47,3 +47,14 @@ def create_post(request):
     return render(request, 'sitecontent/create_post.html', {'form': form})
 
 
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+

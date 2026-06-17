@@ -300,4 +300,18 @@ a {
     margin-bottom: 0.25rem;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.post-text-content {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.likes-scroll-area {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
 

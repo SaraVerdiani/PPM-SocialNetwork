@@ -1,3 +1,4 @@
+{% load crispy_forms_filters %}
 <div class="post-card p-4 p-md-4 mb-4 border rounded-3 bg-white shadow-sm">
     <div class="d-flex align-items-center justify-content-between mb-3">
         <div class="d-flex align-items-center gap-3">
@@ -12,7 +13,16 @@
             </a>
 
         </div>
-        <i class="bi bi-three-dots fs-5 text-muted cursor-pointer"></i>
+
+        <div class="d-flex align-items-center gap-3">
+            {% if request.user == post.author %}
+                <a href="#" class="text-decoration-none text-danger" data-bs-toggle="modal" data-bs-target="#deletePostModal{{ post.id }}" title="Elimina post">
+                    <i class="bi bi-trash fs-5"></i>
+                </a>
+            {% else %}
+                <i class="bi bi-three-dots fs-5 text-muted cursor-pointer"></i>
+            {% endif %}
+        </div>
     </div>
 
     <div class="post-content mb-4 mt-3 px-2">
@@ -35,27 +45,86 @@
         </form>
 
         <div class="text-dark cursor-pointer" data-bs-toggle="modal" data-bs-target="#likesModal{{ post.id }}">
-            <span class="fw-bold">{{ post.likes.count }}</span> <span class="small">Mi piace</span>
+            <span class="fw-bold">{{ post.likes.count }}</span> <span class="small">Like</span>
         </div>
 
-        <div class="d-flex align-items-center gap-2 cursor-pointer text-dark ms-3">
+       <div class="d-flex align-items-center gap-2 cursor-pointer text-dark ms-3" data-bs-toggle="collapse" data-bs-target="#commentsCollapse{{ post.id }}" aria-expanded="false" aria-controls="commentsCollapse{{ post.id }}">
             <i class="bi bi-chat fs-5"></i>
-            <span class="fw-medium">0</span>
+            <span class="fw-medium">{{ post.comments.count }}</span>
+        </div>
+    </div>
+
+    <div class="collapse mt-3 border-top pt-3" id="commentsCollapse{{ post.id }}">
+
+        <form action="{% url 'posts:add_comment' post.id %}" method="POST" class="d-flex gap-2 mb-3 align-items-start">
+            {% csrf_token %}
+            <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=0D8ABC&color=fff" class="rounded-circle mt-1" width="35" height="35" alt="Tuo Avatar">
+            <div class="flex-grow-1 m-0 p-0">
+                {{ comment_form.text|as_crispy_field }}
+            </div>
+            <button type="submit" class="btn btn-primary rounded-pill px-3 fw-medium mt-1">Submit</button>
+        </form>
+
+        <div class="comments-list pe-2" style="max-height: 250px; overflow-y: auto;">
+            {% for comment in post.comments.all %}
+                <div class="d-flex gap-2 mb-3">
+                    <a href="{% url 'users:profile' comment.author.username %}">
+                        <img src="https://ui-avatars.com/api/?name={{ comment.author.username }}&background=0D8ABC&color=fff" class="rounded-circle mt-1" width="32" height="32" alt="Avatar">
+                    </a>
+
+                    <div class="bg-light p-2 px-3 rounded-4 w-100">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <a href="{% url 'users:profile' comment.author.username %}" class="fw-bold small text-dark text-decoration-none">
+                                {{ comment.author.username }}
+                            </a>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="text-muted" style="font-size: 0.75rem;">{{ comment.created_at|date:"d M, H:i" }}</span>
+                                {% if request.user == comment.author %}
+                                    <a href="#" class="text-decoration-none text-danger lh-1" data-bs-toggle="modal" data-bs-target="#deleteCommentModal{{ comment.id }}">
+                                        <i class="bi bi-x-circle-fill"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p class="mb-0 small text-dark post-text-content">{{ comment.text }}</p>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deleteCommentModal{{ comment.id }}" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content border-0 shadow">
+                      <div class="modal-header border-bottom-0 pb-0">
+                        <h5 class="modal-title fw-bold">Delete Comment?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-center">
+                        <p class="text-muted small">Are you sure you want to delete this comment?</p>
+                        <form action="{% url 'posts:delete_comment' comment.id %}" method="POST" class="d-grid gap-2">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger rounded-pill fw-medium">Yes, delete</button>
+                            <button type="button" class="btn btn-light rounded-pill fw-medium" data-bs-dismiss="modal">Cancel</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            {% empty %}
+                <p class="text-muted text-center small mb-0 pb-2">There are no comments.</p>
+            {% endfor %}
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="likesModal{{ post.id }}" tabindex="-1" aria-labelledby="likesModalLabel{{ post.id }}" aria-hidden="true">
+<div class="modal fade" id="likesModal{{ post.id }}" aria-labelledby="likesModalLabel{{ post.id }}" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content border-0 shadow">
-
       <div class="modal-header border-bottom-0 pb-0">
         <h5 class="modal-title fw-bold" id="likesModalLabel{{ post.id }}">Liked by</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
       <div class="modal-body custom-scroll-col likes-scroll-area">
-
         {% for like_user in post.likes.all %}
             <a href="{% url 'users:profile' like_user.username %}" class="d-flex align-items-center gap-3 mb-3 text-decoration-none text-dark">
                 <img src="https://ui-avatars.com/api/?name={{ like_user.username }}&background=0D8ABC&color=fff" class="rounded-circle" width="40" height="40" alt="Avatar">
@@ -64,7 +133,25 @@
         {% empty %}
             <p class="text-muted text-center mb-0 mt-3">No one liked this post yet.</p>
         {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="deletePostModal{{ post.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-bottom-0 pb-0">
+        <h5 class="modal-title fw-bold">Delete Post?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="text-muted small">Are you sure you want to delete this post? This action cannot be undone.</p>
+        <form action="{% url 'posts:delete_post' post.id %}" method="POST" class="d-grid gap-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger rounded-pill fw-medium">Yes, delete</button>
+            <button type="button" class="btn btn-light rounded-pill fw-medium" data-bs-dismiss="modal">Cancel</button>
+        </form>
       </div>
     </div>
   </div>

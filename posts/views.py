@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
 
 from users.models import User
-from .models import Post
+from .models import Post, Comment
 
 from django import forms
 from .models import Post
@@ -24,6 +24,24 @@ class PostForm(forms.ModelForm):
                 'rows': 6,
                 'placeholder': 'Describe your post',
             }),
+        }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+
+        widgets = {
+            'text': forms.TextInput(attrs={
+                'class': 'form-control rounded-pill bg-light border-0',
+                'placeholder': 'Write your comment...',
+                'autocomplete': 'off'
+            })
+        }
+
+        labels = {
+            'text': ''
         }
 
 
@@ -57,4 +75,40 @@ def like_post(request, post_id):
         post.likes.add(request.user)
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def add_comment(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.author = request.user
+            comment.save()
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.user == post.author and request.method == 'POST':
+        post.delete()
+
+    return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user == comment.author and request.method == 'POST':
+        comment.delete()
+
+    return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
 

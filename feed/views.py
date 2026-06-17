@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 
 from posts.models import Post
+from posts.views import CommentForm
 from users.models import User, Follow
 
 
@@ -10,6 +11,11 @@ class HomeView(ListView):
     model = Post
     template_name = 'sitecontent/home.html'
     context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
 
 
 @login_required
@@ -27,6 +33,7 @@ def profile_view(request, username):
         'is_following': is_following,
         'followers_count': profile_user.following.count(),
         'following_count': profile_user.follower.count(),
+        'comment_form': CommentForm()
     }
 
 

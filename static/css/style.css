@@ -167,7 +167,7 @@ a {
     width: 130px;
     height: 130px;
     object-fit: cover;
-    background-color: #f8f9fa;
+    background-color: white;
 }
 
 .profile-bio p {
@@ -261,21 +261,16 @@ a {
         padding-right: 0.5rem;
     }
 
-    .custom-scroll-col::-webkit-scrollbar { display: none; }
-    .custom-scroll-col { -ms-overflow-style: none; scrollbar-width: none; }
+    .custom-scroll-col::-webkit-scrollbar {
+        display: none;
+    }
 
-.upload-area {
-    background-color: #f4f6f8;
-    border: 2px dashed #cbd5e1;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    min-height: 250px;
+    .custom-scroll-col {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }
 
-.upload-area:hover {
-    background-color: #e2e8f0;
-    border-color: #94a3b8;
-}
 
 .custom-textarea:focus {
     outline: none !important;
@@ -286,18 +281,8 @@ a {
     cursor: pointer;
 }
 
-.hover-icon:hover {
-    color: #1e293b;
-}
-
-
 .upload-area {
     min-height: 250px;
-}
-
-.css-file-input {
-    z-index: 20;
-    cursor: pointer;
 }
 
 .success-state {
@@ -305,16 +290,6 @@ a {
     visibility: hidden;
     transition: opacity 0.3s ease-in-out;
     z-index: 5;
-}
-
-.css-file-input:valid ~ .empty-state {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.css-file-input:valid ~ .success-state {
-    opacity: 1;
-    visibility: visible;
 }
 
 .profile-counter {
@@ -326,4 +301,3 @@ a {
 }
 
 
-}

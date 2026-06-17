@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
+from users.models import User
 from .models import Post
 
 from django import forms
@@ -44,3 +45,5 @@ def create_post(request):
         form = PostForm()
 
     return render(request, 'sitecontent/create_post.html', {'form': form})
+
+

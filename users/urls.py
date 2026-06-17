@@ -12,5 +12,6 @@ urlpatterns = [
 
     path('logout/', views.logout_view, name='logout'),
     path('profile/<str:username>/', feed.views.profile_view, name='profile'),
+    path('profile/<str:username>/follow/', views.follow, name='follow'),
 
 ]

@@ -3,17 +3,17 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<div class="col-12 col-lg-10 px-md-5 py-4">
+<div class="col-12 col-lg-10 profile-page-wrapper">
 
-    <div class="profile-header bg-white p-4 rounded-4 shadow-sm mb-4">
-        
-        <div class="row mb-3">
+    <div class="profile-header">
+
+        <div class="row profile-top-row">
             <div class="col-auto">
-                <img src="https://picsum.photos/seed/user_avatar/150/150" alt="Profile Avatar" class="profile-avatar rounded-circle border border-2 border-white shadow-sm">
+                <img src="https://picsum.photos/seed/user_avatar/150/150" alt="Profile Avatar" class="profile-avatar">
             </div>
-            
-            <div class="col ps-md-4 pt-2">
-                <div class="d-flex gap-4 gap-md-5 mb-3 text-center text-md-start">
+
+            <div class="col profile-stats-col">
+                <div class="profile-stats-container">
                     <div>
                         <span class="profile-counter">{{ posts|length }}</span>
                         <span>Posts</span>
@@ -27,36 +27,36 @@
                         <span>Following</span>
                     </div>
                 </div>
-                
-                <div class="profile-bio d-none d-md-block">
-                    <p class="mb-1">Description</p>
-                    <p class="mb-1">Description</p>
-                    <p class="mb-0">Description</p>
+
+                <div class="profile-bio profile-bio-desktop">
+                    <p class="bio-line">Description</p>
+                    <p class="bio-line">Description</p>
+                    <p class="bio-line-last">Description</p>
                 </div>
             </div>
         </div>
 
-        <div class="row align-items-end mt-1">
+        <div class="row profile-info-row">
             <div class="col-md-8">
-                <h3 class="fw-bold mb-0">{{ profile_user.username }}</h3>
-                <p class="text-muted mb-2">@{{ profile_user.username }}</p>
-                
-                <div class="profile-bio d-md-none mb-3">
-                    <p class="mb-1">Description</p>
-                    <p class="mb-1">Description</p>
-                    <p class="mb-0">Description</p>
+                <h3 class="profile-username">{{ profile_user.username }}</h3>
+                <p class="profile-user-handle">@{{ profile_user.username }}</p>
+
+                <div class="profile-bio profile-bio-mobile">
+                    <p class="bio-line">Description</p>
+                    <p class="bio-line">Description</p>
+                    <p class="bio-line-last">Description</p>
                 </div>
 
-                <p class="mb-0 small d-flex align-items-center gap-1">
+                <p class="profile-extra-info">
                     Description
                 </p>
             </div>
-            
-            <div class="col-md-4 text-start text-md-end mt-3 mt-md-0 d-flex gap-2 align-items-center">
+
+            <div class="col-md-4 profile-actions-col">
                 {% if request.user == profile_user %}
                     <button class="btn btn-primary btn-edit-profile">Edit Profile</button>
                 {% else %}
-                    <form action="{% url 'users:follow' profile_user.username %}" method="POST" class="w-100">
+                    <form action="{% url 'users:follow' profile_user.username %}" method="POST" class="profile-action-form">
                         {% csrf_token %}
                         {% if is_following %}
                             <button type="submit" class="btn btn-primary btn-edit-profile">
@@ -76,14 +76,14 @@
     <div class="profile-grid">
         <div class="row g-2 g-md-3">
             {% for post in posts %}
-            {% include 'sitecontent/small_post.html' with post=post %}
-        {% empty %}
-            <div class="col-12 text-center text-muted p-5 mt-4 border rounded-3 bg-light">
-                <i class="bi bi-camera fs-1"></i>
-                <p class="mt-2">There are no posts.</p>
-            </div>
-        {% endfor %}
-    </div>
+                {% include 'sitecontent/small_post.html' with post=post %}
+            {% empty %}
+                <div class="col-12 profile-empty-state">
+                    <i class="bi bi-camera empty-icon"></i>
+                    <p class="empty-text">There are no posts.</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

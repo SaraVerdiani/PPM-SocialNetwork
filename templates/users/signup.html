@@ -5,16 +5,16 @@
 {% block title %}Sign up{% endblock %}
 
 {% block authentication %}
-<div class="login-wrapper">
+<div class="authentication-wrapper">
     <div class="signup-container">
 
-        <div class="login-title-container">
+        <div class="authentication-title-container">
             <h1>Social network</h1>
         </div>
 
-        <div class="login-card">
-            <div class="login-card-body">
-                <h2 class="login-heading">Sign up</h2>
+        <div class="authentication-card">
+            <div class="authentication-card-body">
+                <h2 class="authentication-heading">Sign up</h2>
 
                 <form method="POST">
                     {% csrf_token %}

@@ -5,9 +5,9 @@
 {% block title %}Log in{% endblock %}
 
 {% block authentication %}
-<div class="login-wrapper">
+<div class="authentication-wrapper">
     <div class="login-container">
-        <div class="login-title-container">
+        <div class="authentication-title-container">
             <h1>Social network</h1>
         </div>
 
@@ -20,9 +20,9 @@
             {% endfor %}
         {% endif %}
 
-        <div class="login-card">
-            <div class="login-card-body">
-                <h2 class="login-heading">Log In</h2>
+        <div class="authentication-card">
+            <div class="authentication-card-body">
+                <h2 class="authentication-heading">Log In</h2>
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}

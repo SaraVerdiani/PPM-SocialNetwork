@@ -5,38 +5,38 @@
 {% block title %}Nuovo Post{% endblock %}
 
 {% block content %}
-<div class="col-12 col-lg-10 px-md-5 py-4">
-    <div class="card shadow-sm border-0 rounded-4">
-        <div class="card-header bg-white border-bottom-0 pt-4 pb-0 px-4">
-            <h3 class="fw-bold mb-0">New post</h3>
+<div class="col-12 col-lg-10 create-post-wrapper">
+    <div class="create-post-card shadow-sm">
+        <div class="create-post-header">
+            <h3 class="create-post-title">New post</h3>
         </div>
 
-        <div class="card-body p-4">
+        <div class="create-post-body">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <div class="row g-4">
+                <div class="row create-post-row">
 
-                    <div class="col-12 col-md-6 d-flex flex-column">
-                        <div class="border rounded-3 p-2 h-100 d-flex flex-column bg-white">
+                    <div class="col-12 col-md-6 create-post-col">
+                        <div class="create-post-editor">
 
                             {{ form.description|as_crispy_field }}
 
-                            <div class="d-flex justify-content-between align-items-center text-muted px-2 pt-2 border-top mt-2">
-                                <div class="d-flex gap-3 fs-5">
-                                    <i class="bi bi-emoji-smile cursor-pointer hover-icon"></i>
-                                    <i class="bi bi-hash cursor-pointer hover-icon"></i>
+                            <div class="editor-toolbar">
+                                <div class="editor-tools">
+                                    <i class="bi bi-emoji-smile editor-icon"></i>
+                                    <i class="bi bi-hash editor-icon"></i>
                                 </div>
-                                <small class="text-secondary">0 / 100</small>
+                                <small class="editor-char-count">0 / 100</small>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="d-flex justify-content-end gap-3 mt-4 pt-3 border-top">
-                    <a href="{% url 'feed:home' %}" class="btn btn-light fw-medium px-4 border">Exit</a>
-                    <button type="submit" class="btn btn-primary fw-medium px-4">Post</button>
+                <div class="create-post-actions">
+                    <a href="{% url 'feed:home' %}" class="btn btn-light btn-action-cancel">Exit</a>
+                    <button type="submit" class="btn btn-primary btn-action-submit">Post</button>
                 </div>
             </form>
         </div>

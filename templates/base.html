@@ -14,32 +14,35 @@
 {% if user.is_authenticated %}
 
     {% block navbar %}
-    <nav class="navbar sticky-top shadow-sm px-4 flex-nowrap">
-        <a href="{% url 'feed:home' %}" class="navbar-brand d-flex align-items-center gap-2 m-0">
+    <nav class="navbar sticky-top shadow-sm main-navbar">
+        <a href="{% url 'feed:home' %}" class="navbar-brand brand-link">
             <i class="bi bi-camera-fill brand-icon"></i>
-            <span class="fw-bold brand-text">SocialNetwork</span>
+            <span class="brand-text">SocialNetwork</span>
         </a>
-        <div class="d-flex align-items-center gap-3 gap-md-4">
-            <div class="nav-icon-btn position-relative">
+
+        <div class="navbar-actions">
+            <div class="nav-icon-btn nav-icon-wrapper">
                 <i class="bi bi-bell nav-icon"></i>
-                <span class="position-absolute translate-middle badge rounded-pill bg-danger border border-white notification-badge"></span>
+                <span class="badge notification-badge"></span>
             </div>
+
             <div class="nav-icon-btn">
                 <i class="bi bi-chat nav-icon"></i>
             </div>
-            <div class="nav-icon-btn d-flex align-items-center gap-2 ms-2">
-                <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=0D8ABC&color=fff" class="rounded-circle object-fit-cover" width="40" height="40" alt="Profile">
-                <a href="{% url 'users:profile' request.user.username %}" class="d-lg-flex flex-column lh-1 text-start text-decoration-none text-dark">
-                    <span class="fw-bold profile-name">{{ request.user.username }}</span>
-                    <span class="text-muted profile-handle d-none d-lg-flex">@{{ request.user.username|lower }}</span>
+
+            <div class="nav-icon-btn user-menu-wrapper">
+                <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=0D8ABC&color=fff" class="nav-profile-avatar" alt="Profile">
+                <a href="{% url 'users:profile' request.user.username %}" class="nav-profile-link d-none d-lg-flex">
+                    <span class="profile-name">{{ request.user.username }}</span>
+                    <span class="profile-handle d-none d-lg-flex">@{{ request.user.username|lower }}</span>
                 </a>
-                <i class="bi bi-chevron-down text-muted ms-1 profile-chevron"></i>
+                <i class="bi bi-chevron-down profile-chevron"></i>
             </div>
 
-            <form action="{% url 'users:logout' %}" method="post" class="m-0 p-0 d-flex align-items-center">
+            <form action="{% url 'users:logout' %}" method="post" class="logout-form">
                 {% csrf_token %}
-                <button type="submit" class="nav-icon-btn border-0 bg-transparent ms-2" title="Log out">
-                    <i class="bi bi-box-arrow-right nav-icon text-danger fs-5"></i>
+                <button type="submit" class="nav-icon-btn logout-btn" title="Log out">
+                    <i class="bi bi-box-arrow-right nav-icon logout-icon"></i>
                 </button>
             </form>
         </div>
@@ -47,10 +50,11 @@
     {% endblock %}
 
     <div class="container-fluid">
-        <main class="row mt-4">
+        <main class="row main-content-row">
+
             {% block sidebar %}
             <aside class="d-none d-lg-block col-lg-2">
-                <div class="side-content position-sticky d-flex flex-column gap-4">
+                <div class="side-content">
                     <a href="{% url 'feed:home' %}" class="sidebar-link active">
                         <i class="bi bi-camera-fill"></i>
                         <span>Home</span>
@@ -64,29 +68,31 @@
                         <span>Messages</span>
                     </a>
                     <a href="#" class="sidebar-link">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="position-relative">
+                        <div class="sidebar-link-inner">
+                            <div class="notification-icon-wrapper">
                                 <i class="bi bi-bell"></i>
                                 <span class="notification-dot"></span>
                             </div>
                             <span>Notifications</span>
                         </div>
-                        <span class="badge rounded-pill ms-auto px-2 py-1 sidebar-badge"></span>
+                        <span class="badge sidebar-badge"></span>
                     </a>
                     <a href="{% url 'users:profile' request.user.username %}" class="sidebar-link">
                         <i class="bi bi-person"></i>
                         <span>Profile</span>
                     </a>
-                    <a href = '{% url 'posts:create_post' %}'>
-                    <button class="btn btn-create-post mt-3">
-                        Add Post
-                    </button>
+                    <a href="{% url 'posts:create_post' %}">
+                        <button class="btn btn-create-post">
+                            Add Post
+                        </button>
                     </a>
                 </div>
             </aside>
             {% endblock %}
+
             {% block content %}
             {% endblock %}
+
         </main>
     </div>
 

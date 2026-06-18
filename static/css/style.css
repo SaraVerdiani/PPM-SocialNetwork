@@ -24,6 +24,66 @@ a {
     text-decoration: none;
 }
 
+.authentication-wrapper {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.authentication-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-alert {
+    margin-bottom: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.authentication-card {
+    background-color: var(--bg-panel);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+}
+
+.authentication-card-body {
+    padding: 3rem;
+    flex: 1 1 auto;
+}
+
+.authentication-heading {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.login-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
 .brand-icon {
     color: var(--title-color);
     font-size: 1.8rem;
@@ -32,6 +92,34 @@ a {
 .brand-text {
     color: var(--title-color);
     font-size: 1.4rem;
+}
+
+.main-navbar {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    flex-wrap: nowrap;
+    background-color: var(--bg-panel);
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+
+.brand-text {
+    font-weight: 700;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-icon-wrapper {
+    position: relative;
 }
 
 .nav-icon {
@@ -47,9 +135,70 @@ a {
     transform: scale(1.15);
 }
 
+.user-menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.nav-profile-avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+}
+
+.nav-profile-link {
+    flex-direction: column;
+    line-height: 1;
+    text-align: left;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.profile-name {
+    font-weight: 700;
+}
+
+.profile-handle {
+    color: var(--text-muted);
+}
+
+.profile-chevron {
+    color: var(--text-muted);
+    margin-left: 0.25rem;
+}
+
+.logout-form {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn {
+    border: none;
+    background-color: transparent;
+    margin-left: 0.5rem;
+}
+
+.logout-icon {
+    color: var(--notification-red);
+    font-size: 1.25rem;
+}
+
 .notification-badge {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50rem;
+    background-color: var(--notification-red);
+    border: 1px solid white;
     font-size: 0.65rem;
     padding: 0.25em 0.4em;
+
 }
 
 .profile-name {
@@ -60,9 +209,27 @@ a {
     font-size: 0.8rem;
 }
 
+.main-content-row {
+    margin-top: 1.5rem;
+}
+
 .side-content {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     top: 85px;
     width: 100%;
+}
+
+.sidebar-link-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-icon-wrapper {
+    position: relative;
 }
 
 .signup-container {
@@ -123,11 +290,15 @@ a {
 }
 
 .sidebar-badge {
+    margin-left: auto;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50rem;
     background-color: #e4e6eb;
     font-size: 2.5rem;
 }
 
 .btn-create-post {
+    margin-top: 1rem;
     background-color: var(--button-blue);
     border-radius: 10px;
     font-weight: 500;
@@ -156,6 +327,39 @@ a {
     display: none;
 }
 
+.home-page-wrapper {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.feed-grid-row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+}
+
+.feed-empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.empty-state-icon {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+}
+
+.empty-state-text {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+
 .custom-scroll-col {
     height: auto;
     overflow: visible;
@@ -175,8 +379,22 @@ a {
     object-fit: cover;
 }
 
+.profile-page-wrapper {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
 .profile-header {
+    background-color: var(--bg-panel);
     border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.profile-top-row {
+    margin-bottom: 1rem;
 }
 
 .profile-avatar {
@@ -184,10 +402,77 @@ a {
     height: 130px;
     object-fit: cover;
     background-color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.profile-stats-col {
+    padding-top: 0.5rem;
+}
+
+.profile-stats-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    justify-content: center;
 }
 
 .profile-bio p {
     font-size: 0.95rem;
+}
+
+.bio-line {
+    margin-bottom: 0.25rem;
+}
+
+.bio-line-last {
+    margin-bottom: 0;
+}
+
+.profile-bio-desktop {
+    display: none;
+}
+
+.profile-bio-mobile {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.profile-info-row {
+    align-items: flex-end;
+    margin-top: 0.25rem;
+}
+
+.profile-username {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.profile-user-handle {
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.profile-extra-info {
+    margin-bottom: 0;
+    font-size: 0.875em;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.profile-actions-col {
+    text-align: left;
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.profile-action-form {
+    width: 100%;
 }
 
 .btn-edit-profile {
@@ -217,6 +502,25 @@ a {
     filter: brightness(0.9);
 }
 
+.profile-empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+}
+
+.empty-icon {
+    font-size: 2.5rem;
+}
+
+.empty-text {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
 .custom-textarea:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -224,10 +528,6 @@ a {
 
 .cursor-pointer {
     cursor: pointer;
-}
-
-.upload-area {
-    min-height: 250px;
 }
 
 .success-state {
@@ -246,6 +546,9 @@ a {
 }
 
 .post-text-content {
+    margin-bottom: 0;
+    color: var(--text-main);
+    font-size: 1.25rem;
     white-space: pre-wrap;
     word-break: break-word;
 }
@@ -253,6 +556,315 @@ a {
 .likes-scroll-area {
     max-height: 200px;
     overflow-y: auto;
+}
+
+.post-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-light) !important;
+    background-color: var(--bg-panel);
+    border-radius: 1rem;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.post-author-info, .post-author-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+}
+
+.post-author-avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+}
+
+.post-author-text {
+    line-height: 1;
+}
+
+.post-author-name {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--text-main);
+}
+
+.post-author-meta {
+    color: var(--text-muted);
+    font-size: 0.875em;
+}
+
+.post-actions-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.post-delete-btn {
+    text-decoration: none;
+    color: var(--notification-red);
+}
+
+.post-action-icon {
+    font-size: 1.25rem;
+}
+
+.post-options-icon {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.post-content {
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.post-interactions-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+}
+
+.post-like-form {
+    margin: 0;
+}
+
+.post-interaction-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.post-like-icon-active {
+    font-size: 1.25rem;
+    color: var(--notification-red);
+}
+
+.post-like-icon {
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.post-interaction-count {
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.post-count-number {
+    font-weight: 700;
+}
+
+.post-count-label {
+    font-size: 0.875em;
+}
+
+.post-comment-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: var(--text-main);
+    margin-left: 1rem;
+}
+
+.post-comment-count {
+    font-weight: 500;
+}
+
+.post-comments-section {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 1rem;
+}
+
+.post-comment-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.comment-author-avatar {
+    border-radius: 50%;
+    margin-top: 0.25rem;
+    width: 35px;
+    height: 35px;
+}
+
+.comment-input-wrapper {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-submit-comment {
+    border-radius: 50rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+.comments-list {
+    padding-right: 0.5rem;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.comment-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.comment-user-avatar {
+    border-radius: 50%;
+    margin-top: 0.25rem;
+    width: 32px;
+    height: 32px;
+}
+
+.comment-bubble {
+    background-color: var(--background-gray);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.comment-author-name {
+    font-weight: 700;
+    font-size: 0.875em;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comment-date {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.comment-delete-btn {
+    text-decoration: none;
+    color: var(--notification-red);
+    line-height: 1;
+}
+
+.comment-text {
+    margin-bottom: 0;
+    font-size: 0.875em;
+    color: var(--text-main);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.comments-empty-state {
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.875em;
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+}
+
+.like-user-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.like-user-avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.like-user-name {
+    font-weight: 700;
+}
+
+.likes-empty-state {
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 1rem;
+}
+
+.small-post-col {
+    margin-bottom: 1rem;
+}
+
+.small-post-link {
+    display: block;
+    text-decoration: none;
+    height: 100%;
+}
+
+.profile-grid-text {
+    width: 100%;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.profile-grid-text:hover {
+    transform: scale(1.03);
+}
+
+.small-post-quote-icon {
+    color: var(--text-muted);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.small-post-text-preview {
+    color: var(--text-main);
+    font-weight: 500;
+    word-break: break-word;
 }
 
 .explore-page-wrapper {
@@ -394,74 +1006,148 @@ a {
     overflow: hidden;
 }
 
-.login-wrapper {
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.create-post-wrapper {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
-.login-container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.login-title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.login-alert {
-    margin-bottom: 1rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.login-card {
+.create-post-card {
     background-color: var(--bg-panel);
-    border-radius: 0.375rem;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: none;
+    border-radius: 1rem;
+}
+
+.create-post-header {
+    background-color: var(--bg-panel);
+    padding: 1.5rem 1.5rem 0 1.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.create-post-title {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.create-post-body {
+    padding: 1.5rem;
+}
+
+.create-post-row {
+    --bs-gutter-y: 1.5rem;
+    --bs-gutter-x: 1.5rem;
+}
+
+.create-post-col {
     display: flex;
     flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
 }
 
-.login-card-body {
-    padding: 3rem;
-    flex: 1 1 auto;
+.create-post-editor {
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-panel);
 }
 
-.login-heading {
-    margin-bottom: 1.5rem;
-    text-align: center;
+.editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    border-top: 1px solid var(--border-light);
+    margin-top: 0.5rem;
 }
 
-.btn-login {
-    width: 100%;
+.editor-tools {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.editor-icon {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.editor-icon:hover {
+    color: var(--button-blue);
+}
+
+.editor-char-count {
+    color: var(--text-muted);
+}
+
+.create-post-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
     margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
 }
 
-.login-footer {
-    margin-top: 1.5rem;
-    text-align: center;
+.btn-action-cancel {
+    font-weight: 500;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border: 1px solid var(--border-main);
+}
+
+.btn-action-submit {
+    font-weight: 500;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 @media (min-width: 768px) {
+    .profile-page-wrapper {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
     .profile-avatar {
         width: 100px;
         height: 100px;
     }
 
+    .profile-stats-col {
+        padding-left: 1.5rem;
+    }
+
+    .profile-stats-container {
+        gap: 3rem;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .profile-bio-desktop {
+        display: block;
+    }
+
+    .profile-bio-mobile {
+        display: none;
+    }
+
+    .profile-actions-col {
+        margin-top: 0;
+        justify-content: flex-end;
+    }
+
+    .home-page-wrapper {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
     .btn-edit-profile {
         width: 100% !important;
+    }
+    .navbar-actions {
+        gap: 1.5rem; 
     }
 
     .login-container {
@@ -470,6 +1156,11 @@ a {
 
     .signup-container {
         width: 50%;
+    }
+
+    .create-post-wrapper {
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 }
 
@@ -490,7 +1181,7 @@ a {
     .login-container {
         width: 25%;
     }
-    
+
     .signup-container {
         width: 25%;
     }

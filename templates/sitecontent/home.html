@@ -3,11 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="col-12 col-lg-10 px-md-5 py-4">
+<div class="col-12 col-lg-10 home-page-wrapper">
     <div class="feed-wrapper">
 
         {% if posts %}
-            <div class="row g-4">
+            <div class="row feed-grid-row">
 
                 <div class="col-12 col-xl-6 custom-scroll-col">
                     {% for post in posts %}
@@ -28,9 +28,9 @@
             </div>
 
         {% else %}
-            <div class="text-center text-muted p-5 mt-4 border rounded-3 bg-light shadow-sm">
-                <i class="bi bi-journal-text fs-1"></i>
-                <p class="mt-3 fs-5">Feed is empty. Be the first to write something!</p>
+            <div class="feed-empty-state">
+                <i class="bi bi-journal-text empty-state-icon"></i>
+                <p class="empty-state-text">Feed is empty. Be the first to write something!</p>
             </div>
 
         {% endif %}

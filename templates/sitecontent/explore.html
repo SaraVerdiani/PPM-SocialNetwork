@@ -1,13 +1,33 @@
-<div class="explore-page-wrapper">
+{% extends "base.html" %}
+
+{% block title %}Explore{% endblock %}
+
+{% block content %}
+<div class="col-12 col-lg-10 explore-page-wrapper">
 
     <section class="explore-panel">
         <h2 class="panel-heading">Discover & Connect</h2>
-
+        
+        <div class="users-grid">
+            {% for suggested_user in suggested_users %}
+                {% include 'sitecontent/user_card.html' with user=suggested_user %}
+            {% empty %}
+                <p class="text-muted">No users found.</p>
+            {% endfor %}
+        </div>
     </section>
 
     <section class="explore-panel">
         <h2 class="panel-heading">Trending on the Web</h2>
-
+        
+        <div class="trends-grid">
+            {% for news in news_items %}
+                {% include 'sitecontent/news_card.html' with news=news %}
+            {% empty %}
+                <p class="text-muted">No trending news right now.</p>
+            {% endfor %}
+        </div>
     </section>
 
 </div>
+{% endblock %}

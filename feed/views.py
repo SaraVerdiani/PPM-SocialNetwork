@@ -48,8 +48,10 @@ class ExploreView(TemplateView):
 
         if self.request.user.is_authenticated:
             context['suggested_users'] = User.objects.exclude(id=self.request.user.id).exclude(is_superuser=True)[:4]
+            context['followed_users_ids'] = Follow.objects.filter(follower=self.request.user).values_list('following_id', flat=True)
         else:
             context['suggested_users'] = User.objects.exclude(is_superuser=True)[:4]
+            context['followed_users_ids'] = []
 
         context['news_items'] = News.objects.all().order_by('-created_at')[:6]
 

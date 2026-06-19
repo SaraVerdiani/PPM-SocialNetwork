@@ -50,4 +50,9 @@ def follow(request, username):
     else:
         Follow.objects.create(follower=request.user, following=target_user)
 
+    next_page = request.META.get('HTTP_REFERER')
+
+    if next_page:
+        return redirect(next_page)
+
     return redirect('users:profile', username=username)

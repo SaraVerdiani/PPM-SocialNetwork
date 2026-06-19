@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, ListView
 
-from posts.models import Post
+from posts.models import Post, News
 from posts.views import CommentForm
 from users.models import User, Follow
 
@@ -39,6 +39,7 @@ def profile_view(request, username):
 
     return render(request, 'users/profile.html', context)
 
+
 class ExploreView(TemplateView):
     template_name = 'sitecontent/explore.html'
 
@@ -48,6 +49,8 @@ class ExploreView(TemplateView):
         if self.request.user.is_authenticated:
             context['suggested_users'] = User.objects.exclude(id=self.request.user.id).exclude(is_superuser=True)[:4]
         else:
-            context['suggested_users'] = User.objects.all()[:4]
+            context['suggested_users'] = User.objects.exclude(is_superuser=True)[:4]
+
+        context['news_items'] = News.objects.all().order_by('-created_at')[:6]
 
         return context

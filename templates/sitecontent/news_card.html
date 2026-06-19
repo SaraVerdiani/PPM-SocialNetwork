@@ -1,10 +1,19 @@
-<div class="trends-grid">
-    <div class="trend-card">
-        <img src="https://via.placeholder.com/80" alt="Thumbnail" class="trend-img">
-        <div class="trend-text">
-            <span class="trend-title">Title</span>
-            <span class="trend-source">Source</span>
-            <span class="trend-snippet">Description</span>
-        </div>
+<div class="trend-card position-relative">
+    <img src="{{ news.image_url|default:'https://picsum.photos/seed/news/80/80' }}" alt="Thumbnail" class="trend-img">
+    <div class="trend-text">
+        <span class="trend-title">
+            <a href="{% url 'posts:post_detail' news.id %}" class="text-decoration-none text-dark stretched-link">
+                {{ news.title }}
+            </a>
+        </span>
+
+        <span class="trend-source position-relative z-3">
+            Author:
+            <a href="{% url 'users:profile' news.author.username %}" class="text-decoration-none text-secondary">
+                {{ news.author.username }}
+            </a>
+        </span>
+
+        <span class="trend-snippet">{{ news.description|truncatechars:80 }}</span>
     </div>
 </div>

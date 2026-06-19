@@ -26,8 +26,15 @@
 
     <div class="post-content">
         <p class="post-text-content">
+            {% if post.is_news %}
+                <div class="news-specific-content mb-3">
+                    <h4 class="fw-bold">{{ post.news.title }}</h4>
+                    {% if post.news.image_url %}
+                        <img src="{{ post.news.image_url }}" alt="Immagine Notizia" class="img-fluid rounded mb-2 w-100 object-fit-cover" style="max-height: 400px;">
+                    {% endif %}
+                </div>
+            {% endif %}
             {{ post.description }}
-        </p>
     </div>
 
     <div class="post-interactions-bar">

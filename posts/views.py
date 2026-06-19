@@ -1,10 +1,9 @@
-from django import forms
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
-
-from users.models import User
 from .models import Post, Comment
-
+from django.views.generic import DetailView
+from django.urls import reverse
 from django import forms
 from .models import Post
 
@@ -112,3 +111,23 @@ def delete_comment(request, comment_id):
 
     return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
 
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'sitecontent/post_details.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+
+        referer = self.request.META.get('HTTP_REFERER')
+
+        if referer and '/posts/' not in referer:
+            self.request.session['post_back_url'] = referer
+
+        context['back_url'] = self.request.session.get(
+            'post_back_url',
+            reverse('users:profile', kwargs={'username': self.object.author.username})
+        )
+
+        return context

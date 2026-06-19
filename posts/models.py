@@ -13,8 +13,22 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+    @property
+    def is_news(self):
+        return hasattr(self, 'news')
+
     def __str__(self):
         return f"Post di {self.author.username} del {self.created_at.strftime('%d/%m/%Y')}"
+
+
+class News(Post):
+    title = models.CharField(max_length=200)
+    source = models.CharField(max_length=100, blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return f"News: {self.title}"
+
 
 
 class Comment(models.Model):

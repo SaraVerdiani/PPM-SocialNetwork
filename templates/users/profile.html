@@ -4,6 +4,16 @@
 
 {% block content %}
 <div class="col-12 col-lg-10 profile-page-wrapper">
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
     <div class="profile-header">
 
@@ -29,9 +39,11 @@
                 </div>
 
                 <div class="profile-bio profile-bio-desktop">
-                    <p class="bio-line">Description</p>
-                    <p class="bio-line">Description</p>
-                    <p class="bio-line-last">Description</p>
+                    {% if profile_user.bio %}
+                        <p class="bio-line-last">{{ profile_user.bio|linebreaksbr }}</p>
+                    {% else %}
+                        <p class="bio-line-last text-muted"><em>No bio</em></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -42,19 +54,19 @@
                 <p class="profile-user-handle">@{{ profile_user.username }}</p>
 
                 <div class="profile-bio profile-bio-mobile">
-                    <p class="bio-line">Description</p>
-                    <p class="bio-line">Description</p>
-                    <p class="bio-line-last">Description</p>
+                    {% if profile_user.bio %}
+                        <p class="bio-line-last">{{ profile_user.bio|linebreaksbr }}</p>
+                    {% else %}
+                        <p class="bio-line-last text-muted"><em>No bio</em></p>
+                    {% endif %}
                 </div>
-
-                <p class="profile-extra-info">
-                    Description
-                </p>
             </div>
 
             <div class="col-md-4 profile-actions-col">
                 {% if request.user == profile_user %}
-                    <button class="btn btn-primary btn-edit-profile">Edit Profile</button>
+                    <a href="{% url 'users:edit_profile' %}" class="btn btn-primary btn-edit-profile text-center text-decoration-none">
+                        Edit Profile
+                    </a>
                 {% else %}
                     <form action="{% url 'users:follow' profile_user.username %}" method="POST" class="profile-action-form">
                         {% csrf_token %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}Modifica Profilo{% endblock %}
+{% block content %}
+<div class="col-12 col-lg-10 edit-profile-wrapper">
+    <div class="edit-profile-container">
+        <div class="edit-profile-header">
+            <h1 class="edit-profile-main-title">Edit Profile</h1>
+        </div>
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="row edit-profile-row">
+                <div class="col-lg-6 edit-profile-col">
+                    <div class="edit-profile-panel">
+                        <h2 class="panel-title">Profile Description</h2>
+
+                        {{ profile_form.bio|as_crispy_field }}
+
+                        <button type="submit" name="action" value="update_bio" class="btn-follow w-100 mt-auto">Update Biography</button>
+                    </div>
+                </div>
+
+                <div class="col-12 edit-profile-col">
+                    <div class="edit-profile-panel">
+                        <h2 class="panel-title">Pinned Posts</h2>
+                        <p class="panel-subtitle">These posts will appear at the top of your profile.</p>
+
+                        <div class="pinned-posts-grid mb-3">
+
+                            <div class="pinned-post-card">
+                                <div class="pinned-image-container">
+                                    <div class="pin-icon-wrapper">
+                                        <i class="bi bi-pin-angle-fill pin-icon"></i>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-follow w-100 mt-auto">Remove from Pinned</button>
+                            </div>
+                            <div class="pinned-post-card">
+                                <div class="pinned-image-container">
+                                    <div class="pin-icon-wrapper">
+                                        <i class="bi bi-pin-angle-fill pin-icon"></i>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-follow w-100 mt-auto">Remove from Pinned</button>
+                            </div>
+                            </div>
+                        <button type="button" class="btn-follow w-100 mt-auto">Choose a Post to Pin</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center gap-3 mt-4 pt-3">
+                <button type="submit" name="action" value="save_all" class="btn-create-post w-auto m-0 border-0 px-4">Save All Changes</button>
+                <a href='{% url 'users:profile' request.user %}' class="btn-follow px-4 text-decoration-none">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

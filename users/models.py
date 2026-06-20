@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class User(AbstractUser):
+    bio = models.TextField(max_length=500, blank=True, null=True, verbose_name="biography")
 
     class Meta:
         permissions = (("can_delete_post", "Can delete a post"),

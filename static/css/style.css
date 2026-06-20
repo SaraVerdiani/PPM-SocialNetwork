@@ -1103,6 +1103,152 @@ a {
     padding-right: 1.5rem;
 }
 
+.edit-profile-wrapper {
+    background-color: var(--background-gray);
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    min-height: 100vh;
+}
+
+.edit-profile-container {
+    background-color: var(--bg-panel);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.edit-profile-header {
+    margin-bottom: 1.5rem;
+}
+
+.edit-profile-main-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.edit-profile-row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+}
+
+.edit-profile-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-panel {
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.panel-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.panel-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.blocked-users-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blocked-user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.blocked-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.blocked-user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.blocked-user-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.blocked-user-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.blocked-user-handle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.pinned-posts-grid {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.pinned-post-card {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pinned-image-container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    margin-bottom: 0.75rem;
+    background-color: var(--background-gray);
+    border-radius: 12px;
+}
+
+.pin-icon-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+}
+
+.pin-icon {
+    font-size: 1.1rem;
+}
+
 @media (min-width: 768px) {
     .profile-page-wrapper {
         padding-left: 3rem;

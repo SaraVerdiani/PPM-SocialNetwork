@@ -1249,6 +1249,99 @@ a {
     font-size: 1.1rem;
 }
 
+.choose-pin-container {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.choose-pin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.choose-pin-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+.btn-back {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.choose-pin-row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 1.5rem;
+}
+
+.pin-choice-form {
+    height: 100%;
+}
+
+.pin-choice-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.pin-choice-btn:hover {
+    transform: scale(1.03);
+    z-index: 10;
+}
+
+.pin-choice-card {
+    aspect-ratio: 1 / 1;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 100%;
+    border: 1px solid var(--border-light);
+}
+
+.pin-choice-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pin-choice-text-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.pin-choice-icon {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    opacity: 0.25;
+    margin-bottom: 1rem;
+}
+
+.pin-choice-text {
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: var(--text-main);
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.pin-empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 3rem;
+}
+
 @media (min-width: 768px) {
     .profile-page-wrapper {
         padding-left: 3rem;

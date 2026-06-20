@@ -21,7 +21,10 @@ class HomeView(ListView):
 @login_required
 def profile_view(request, username):
     profile_user = get_object_or_404(User, username=username)
-    user_posts = profile_user.posts.all()
+    
+    pinned_posts = Post.objects.filter(author=profile_user, is_pinned=True).order_by('-created_at')
+
+    regular_posts = Post.objects.filter(author=profile_user, is_pinned=False).order_by('-created_at')
 
     is_following = False
     if request.user != profile_user:
@@ -29,7 +32,8 @@ def profile_view(request, username):
 
     context = {
         'profile_user': profile_user,
-        'posts': user_posts,
+        'posts': regular_posts,
+        'pinned_posts': pinned_posts,
         'is_following': is_following,
         'followers_count': profile_user.following.count(),
         'following_count': profile_user.follower.count(),

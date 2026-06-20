@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
 
+from posts.models import Post
 from users.models import User, Follow
 
 
@@ -77,6 +78,8 @@ class ProfileEditForm(forms.ModelForm):
 def edit_profile(request):
     profile_form = ProfileEditForm(instance=request.user)
 
+    pinned_posts = Post.objects.filter(author=request.user, is_pinned=True)
+
     if request.method == 'POST':
         action = request.POST.get('action')
 
@@ -91,7 +94,18 @@ def edit_profile(request):
 
     context = {
         'profile_form': profile_form,
+        'pinned_posts': pinned_posts,
     }
 
     return render(request, 'users/edit_profile.html', context)
+
+
+@login_required
+def choose_pinned_post(request):
+    unpinned_posts = Post.objects.filter(author=request.user, is_pinned=False).order_by('-created_at')
+
+    context = {
+        'posts': unpinned_posts
+    }
+    return render(request, 'users/choose_pinned_post.html', context)
 

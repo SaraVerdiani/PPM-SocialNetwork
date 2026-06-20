@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Choose a Post to Pin{% endblock %}
+
+{% block content %}
+<div class="col-12 col-lg-10 profile-page-wrapper">
+    <div class="choose-pin-container">
+
+        <div class="choose-pin-header">
+            <div>
+                <h2>Choose a post to pin</h2>
+                <p class="choose-pin-subtitle">Select one of your posts to pin it to the top of your profile.</p>
+            </div>
+            <a href="{% url 'users:edit_profile' %}" class="btn-follow btn-back">Back</a>
+        </div>
+
+        <div class="row choose-pin-row">
+            {% for post in posts %}
+                <div class="col-12 col-sm-6 col-md-4">
+                    <form action="{% url 'posts:pin_post' post.id %}" method="POST" class="pin-choice-form">
+                        {% csrf_token %}
+                      <button type="submit" class="pin-choice-btn" title="Pin this post">
+                          <span class="card shadow-sm pin-choice-card">
+                              {% if post.image %}
+                                  <img src="{{ post.image.url }}" class="pin-choice-img" alt="Post preview">
+                              {% else %}
+                                  <span class="pin-choice-text-wrapper">
+                                      <i class="bi bi-quote pin-choice-icon"></i>
+                                      <span class="pin-choice-text">
+                                          {{ post.description|truncatechars:120 }}
+                                      </span>
+                                  </span>
+                              {% endif %}
+                          </span>
+                      </button>
+                    </form>
+                </div>
+            {% empty %}
+                <div class="col-12 pin-empty-state">
+                    <p>You don't have any posts to pin.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

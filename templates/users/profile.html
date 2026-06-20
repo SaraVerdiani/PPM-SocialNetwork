@@ -87,13 +87,20 @@
 
     <div class="profile-grid">
         <div class="row g-2 g-md-3">
+
+            {% for post in pinned_posts %}
+                {% include 'sitecontent/small_post.html' with post=post %}
+            {% endfor %}
+
             {% for post in posts %}
                 {% include 'sitecontent/small_post.html' with post=post %}
             {% empty %}
-                <div class="col-12 profile-empty-state">
-                    <i class="bi bi-camera empty-icon"></i>
-                    <p class="empty-text">There are no posts.</p>
-                </div>
+                {% if not pinned_posts %}
+                    <div class="col-12 profile-empty-state">
+                        <i class="bi bi-camera empty-icon"></i>
+                        <p class="empty-text">There are no posts.</p>
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

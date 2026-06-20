@@ -12,4 +12,5 @@ urlpatterns = [
     path('post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
     path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+    path('<int:post_id>/pin/', views.pin_post, name='pin_post'),
 ]

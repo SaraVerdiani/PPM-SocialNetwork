@@ -8,6 +8,7 @@ class Post(models.Model):
     description = models.TextField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
+    is_pinned = models.BooleanField(default=False, verbose_name="Pinned")
 
 
     class Meta:

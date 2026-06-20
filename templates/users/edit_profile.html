@@ -25,27 +25,41 @@
                     <div class="edit-profile-panel">
                         <h2 class="panel-title">Pinned Posts</h2>
                         <p class="panel-subtitle">These posts will appear at the top of your profile.</p>
-
                         <div class="pinned-posts-grid mb-3">
+                            {% for post in pinned_posts %}
+                                <div class="pinned-post-card">
+                                    <div class="pinned-image-container mb-2">
+                                        <div class="pin-icon-wrapper z-1">
+                                            <i class="bi bi-pin-angle-fill pin-icon"></i>
+                                        </div>
+                                        {% if post.image %}
+                                            <img src="{{ post.image.url }}" class="w-100 h-100 object-fit-cover rounded-3" alt="Post preview">
+                                        {% else %}
+                                            <div class="w-100 h-100 bg-light border rounded-3 p-3 d-flex flex-column align-items-center justify-content-center text-center overflow-hidden">
+                                                <i class="bi bi-quote text-muted fs-4 mb-1 opacity-50"></i>
+                                                <span class="fw-medium text-break" style="font-size: 0.85rem; color: var(--text-main);">
+                                                    {{ post.description|truncatechars:70 }}
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
 
-                            <div class="pinned-post-card">
-                                <div class="pinned-image-container">
-                                    <div class="pin-icon-wrapper">
-                                        <i class="bi bi-pin-angle-fill pin-icon"></i>
-                                    </div>
+                                    {% if post.image %}
+                                        <p class="small text-muted mb-2 text-truncate" title="{{ post.text }}">
+                                            {{ post.description }}
+                                        </p>
+                                    {% endif %}
+                                    <button type="submit" formaction="{% url 'posts:pin_post' post.id %}" class="btn-follow w-100 mt-auto">
+                                        Remove from Pinned
+                                    </button>
                                 </div>
-                                <button type="button" class="btn-follow w-100 mt-auto">Remove from Pinned</button>
-                            </div>
-                            <div class="pinned-post-card">
-                                <div class="pinned-image-container">
-                                    <div class="pin-icon-wrapper">
-                                        <i class="bi bi-pin-angle-fill pin-icon"></i>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn-follow w-100 mt-auto">Remove from Pinned</button>
-                            </div>
-                            </div>
-                        <button type="button" class="btn-follow w-100 mt-auto">Choose a Post to Pin</button>
+                            {% empty %}
+                                <p class="text-muted text-center w-100 my-4"><em>No posts pinned yet.</em></p>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'users:choose_pinned_post' %}" class="btn-follow w-100 mt-auto text-decoration-none text-center d-block">
+                            Choose a Post to Pin
+                        </a>
                     </div>
                 </div>
             </div>

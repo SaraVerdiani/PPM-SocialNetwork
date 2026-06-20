@@ -99,7 +99,12 @@ def delete_post(request, post_id):
     if request.user == post.author and request.method == 'POST':
         post.delete()
 
-    return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
+    referer = request.META.get('HTTP_REFERER', '/')
+
+    if f"/{post_id}/" in referer:
+        return redirect('users:profile', username=request.user.username)
+
+    return redirect(referer)
 
 
 @login_required
@@ -131,3 +136,11 @@ class PostDetailView(DetailView):
         )
 
         return context
+
+def pin_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+
+    post.is_pinned = not post.is_pinned
+    post.save()
+
+    return redirect(request.META.get('HTTP_REFERER', 'users:profile'))

@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/<str:username>/', feed.views.profile_view, name='profile'),
     path('profile/<str:username>/follow/', views.follow, name='follow'),
+    path('profile/edit/pin-post/', views.choose_pinned_post, name='choose_pinned_post'),
 
 
 ]

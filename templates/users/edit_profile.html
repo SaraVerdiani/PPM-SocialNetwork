@@ -1,23 +1,38 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
+
 {% block title %}Modifica Profilo{% endblock %}
+
 {% block content %}
 <div class="col-12 col-lg-10 edit-profile-wrapper">
     <div class="edit-profile-container">
+
         <div class="edit-profile-header">
             <h1 class="edit-profile-main-title">Edit Profile</h1>
         </div>
+
         <form method="post" action="">
             {% csrf_token %}
-            <div class="row edit-profile-row">
-                <div class="col-lg-6 edit-profile-col">
-                    <div class="edit-profile-panel">
+
+            <div class="row edit-profile-row g-3 g-lg-4"> <div class="col-lg-6 edit-profile-col">
+                    <div class="edit-profile-panel d-flex flex-column h-100">
                         <h2 class="panel-title">Profile Description</h2>
-
                         {{ profile_form.bio|as_crispy_field }}
+                        <button type="submit" name="action" value="update_bio" class="btn-follow w-100 mt-auto">
+                            Update Biography
+                        </button>
+                    </div>
+                </div>
 
-                        <button type="submit" name="action" value="update_bio" class="btn-follow w-100 mt-auto">Update Biography</button>
+                <div class="col-lg-6 edit-profile-col">
+                    <div class="edit-profile-panel d-flex flex-column h-100">
+                        <h2 class="panel-title">Account Privacy</h2>
+                        <p class="panel-subtitle text-muted mb-3">Manage who can see your content.</p>
+
+                        <div class="mt-2 mb-auto">
+                            {{ profile_form.is_private|as_crispy_field }}
+                        </div>
                     </div>
                 </div>
 
@@ -25,19 +40,22 @@
                     <div class="edit-profile-panel">
                         <h2 class="panel-title">Pinned Posts</h2>
                         <p class="panel-subtitle">These posts will appear at the top of your profile.</p>
+
                         <div class="pinned-posts-grid mb-3">
                             {% for post in pinned_posts %}
                                 <div class="pinned-post-card">
-                                    <div class="pinned-image-container mb-2">
-                                        <div class="pin-icon-wrapper z-1">
+
+                                    <div class="pinned-image-container">
+                                        <div class="pin-icon-wrapper">
                                             <i class="bi bi-pin-angle-fill pin-icon"></i>
                                         </div>
+
                                         {% if post.image %}
-                                            <img src="{{ post.image.url }}" class="w-100 h-100 object-fit-cover rounded-3" alt="Post preview">
+                                            <img src="{{ post.image.url }}" class="pinned-img" alt="Post preview">
                                         {% else %}
-                                            <div class="w-100 h-100 bg-light border rounded-3 p-3 d-flex flex-column align-items-center justify-content-center text-center overflow-hidden">
-                                                <i class="bi bi-quote text-muted fs-4 mb-1 opacity-50"></i>
-                                                <span class="fw-medium text-break" style="font-size: 0.85rem; color: var(--text-main);">
+                                            <div class="pinned-text-placeholder">
+                                                <i class="bi bi-quote pinned-quote-icon"></i>
+                                                <span class="pinned-preview-text">
                                                     {{ post.description|truncatechars:70 }}
                                                 </span>
                                             </div>
@@ -49,6 +67,7 @@
                                             {{ post.description }}
                                         </p>
                                     {% endif %}
+
                                     <button type="submit" formaction="{% url 'posts:pin_post' post.id %}" class="btn-follow w-100 mt-auto">
                                         Remove from Pinned
                                     </button>
@@ -57,16 +76,24 @@
                                 <p class="text-muted text-center w-100 my-4"><em>No posts pinned yet.</em></p>
                             {% endfor %}
                         </div>
+
                         <a href="{% url 'users:choose_pinned_post' %}" class="btn-follow w-100 mt-auto text-decoration-none text-center d-block">
                             Choose a Post to Pin
                         </a>
                     </div>
                 </div>
+
             </div>
+
             <div class="d-flex justify-content-center align-items-center gap-3 mt-4 pt-3">
-                <button type="submit" name="action" value="save_all" class="btn-create-post w-auto m-0 border-0 px-4">Save All Changes</button>
-                <a href='{% url 'users:profile' request.user %}' class="btn-follow px-4 text-decoration-none">Cancel</a>
+                <button type="submit" name="action" value="save_all" class="btn-create-post w-auto m-0 border-0 px-4">
+                    Save All Changes
+                </button>
+                <a href="{% url 'users:profile' request.user %}" class="btn-follow px-4 text-decoration-none">
+                    Cancel
+                </a>
             </div>
+
         </form>
     </div>
 </div>

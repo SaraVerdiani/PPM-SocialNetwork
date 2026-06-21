@@ -15,6 +15,9 @@ urlpatterns = [
     path('profile/<str:username>/', feed.views.profile_view, name='profile'),
     path('profile/<str:username>/follow/', views.follow, name='follow'),
     path('profile/edit/pin-post/', views.choose_pinned_post, name='choose_pinned_post'),
+    path('requests/', views.follow_requests, name='follow_requests'),
+    path('requests/<int:follow_id>/accept/', views.accept_request, name='accept_request'),
+    path('requests/<int:follow_id>/reject/', views.reject_request, name='reject_request'),
 
 
 ]

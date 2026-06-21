@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Follow Requests{% endblock %}
+
+{% block content %}
+<div class="col-12 col-lg-10 profile-page-wrapper">
+    <div class="edit-profile-container requests-page-container">
+
+        <div class="requests-header">
+            <h1 class="edit-profile-main-title">Follow Requests</h1>
+            <p class="requests-subtitle">Manage the users who want to follow your private profile.</p>
+        </div>
+
+        {% if pending_requests %}
+            <div class="requests-list">
+                {% for req in pending_requests %}
+                    <div class="request-card shadow-sm">
+
+                        <div class="request-user-info">
+                            <a href="{% url 'users:profile' req.follower.username %}">
+                                <img src="https://ui-avatars.com/api/?name={{ req.follower.username }}&background=0D8ABC&color=fff" class="request-user-avatar" alt="Avatar">
+                            </a>
+                            <div class="request-user-text">
+                                <a href="{% url 'users:profile' req.follower.username %}" class="request-username">
+                                    {{ req.follower.username }}
+                                </a>
+                                <span class="request-user-handle">@{{ req.follower.username|lower }}</span>
+                            </div>
+                        </div>
+
+                        <div class="request-actions">
+                            <form action="{% url 'users:accept_request' req.id %}" method="POST" class="request-action-form">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-create-post request-btn-accept">
+                                    Accept
+                                </button>
+                            </form>
+
+                            <form action="{% url 'users:reject_request' req.id %}" method="POST" class="request-action-form">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-follow request-btn-decline">
+                                    Decline
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="requests-empty-state">
+                <i class="bi bi-inbox requests-empty-icon"></i>
+                <h5 class="requests-empty-title">No pending requests</h5>
+                <p class="requests-empty-text">You don't have any new follow requests.</p>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

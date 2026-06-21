@@ -63,6 +63,12 @@
                         <i class="bi bi-compass"></i>
                         <span>Explore</span>
                     </a>
+                    {% if request.user.is_private %}
+                        <a href="{% url 'users:follow_requests' %}" class="sidebar-link">
+                            <i class="bi bi-person-plus"></i>
+                            <span>Requests</span>
+                        </a>
+                    {% endif %}
                     <a href="{% url 'users:profile' request.user.username %}" class="sidebar-link">
                         <i class="bi bi-person"></i>
                         <span>Profile</span>

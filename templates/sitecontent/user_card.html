@@ -4,21 +4,34 @@
             <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=0D8ABC&color=fff" alt="Avatar" class="avatar-img">
         </a>
         <div class="user-text">
-            <a href="{% url 'users:profile' user.username %}" class="text-decoration-none text-dark">
+
+            <a href="{% url 'users:profile' user.username %}" class="user-name-link">
                 <span class="user-name">{{ user.username }}</span>
+                {% if user.is_private %}
+                    <i class="bi bi-lock-fill user-private-icon" title="Private Profile"></i>
+                {% endif %}
             </a>
+
             <span class="user-handle">@{{ user.username|lower }}</span>
-            <span class="user-bio">User description</span>
+
+            <span class="user-bio">
+                {{ user.bio|default:"No bio"|truncatechars:40 }}
+            </span>
         </div>
     </div>
 
-    <form action="{% url 'users:follow' user.username %}" method="POST" class="m-0">
+    <form action="{% url 'users:follow' user.username %}" method="POST" class="user-follow-form">
         {% csrf_token %}
 
-        {% if user.id in followed_users_ids %}
-            <button type="submit" class="btn btn-outline-secondary btn-follow">Already followed</button>
+        {% if user.id in accepted_following_ids %}
+            <button type="submit" class="btn btn-outline-secondary btn-follow">Following</button>
+
+        {% elif user.id in pending_following_ids %}
+            <button type="submit" class="btn btn-secondary btn-follow">Requested</button>
+
         {% else %}
             <button type="submit" class="btn btn-primary btn-follow">Follow</button>
+
         {% endif %}
 
     </form>

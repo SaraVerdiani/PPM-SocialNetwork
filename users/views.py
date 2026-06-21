@@ -43,32 +43,30 @@ def follow(request, username):
     target_user = get_object_or_404(User, username=username)
 
     if request.user == target_user:
-        return redirect('profile', username=username)
+        return redirect('users:profile', username=username)
 
-    follow_record = Follow.objects.filter(follower=request.user, following=target_user)
+    follow_record = Follow.objects.filter(follower=request.user, following=target_user).first()
 
-    if follow_record.exists():
+    if follow_record:
         follow_record.delete()
     else:
-        Follow.objects.create(follower=request.user, following=target_user)
+        is_accepted = not target_user.is_private
+        Follow.objects.create(follower=request.user, following=target_user, is_accepted=is_accepted)
 
-    next_page = request.META.get('HTTP_REFERER')
-
-    if next_page:
-        return redirect(next_page)
-
-    return redirect('users:profile', username=username)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['bio']
+        fields = ['bio', 'is_private']
         labels = {
-            'bio': 'Your biography'
+            'bio': 'Your biography',
+            'is_private': 'Make profile private',
         }
         help_texts = {
-            'bio': 'Max. 200 characters'
+            'bio': 'Max. 200 characters',
+            'is_private': 'If enabled, only approved followers can see your posts.'
         }
         widgets = {
             'bio': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Insert your bio...'})
@@ -108,4 +106,36 @@ def choose_pinned_post(request):
         'posts': unpinned_posts
     }
     return render(request, 'users/choose_pinned_post.html', context)
+
+
+@login_required
+def follow_requests(request):
+    if not request.user.is_private:
+        return redirect('feed:home')
+
+    pending_requests = Follow.objects.filter(following=request.user, is_accepted=False).order_by('-id')
+
+    context = {
+        'pending_requests': pending_requests
+    }
+    return render(request, 'users/follow_requests.html', context)
+
+
+@login_required
+def accept_request(request, follow_id):
+    if request.method == 'POST':
+        follow_record = get_object_or_404(Follow, id=follow_id, following=request.user, is_accepted=False)
+        follow_record.is_accepted = True
+        follow_record.save()
+
+    return redirect('users:follow_requests')
+
+
+@login_required
+def reject_request(request, follow_id):
+    if request.method == 'POST':
+        follow_record = get_object_or_404(Follow, id=follow_id, following=request.user, is_accepted=False)
+        follow_record.delete()
+
+    return redirect('users:follow_requests')
 

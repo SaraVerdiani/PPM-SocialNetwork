@@ -31,7 +31,9 @@
             </div>
 
             <div class="nav-icon-btn user-menu-wrapper">
+                <a href='{% url 'users:profile' request.user.username %}' class="nav-icon-btn">
                 <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=0D8ABC&color=fff" class="nav-profile-avatar" alt="Profile">
+                    </a>
                 <a href="{% url 'users:profile' request.user.username %}" class="nav-profile-link d-none d-lg-flex">
                     <span class="profile-name">{{ request.user.username }}</span>
                     <span class="profile-handle d-none d-lg-flex">@{{ request.user.username|lower }}</span>

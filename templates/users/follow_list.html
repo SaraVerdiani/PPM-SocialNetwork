@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ target_user.username }} - {{ page_type }}{% endblock %}
+
+{% block content %}
+<div class="col-12 col-lg-10 profile-page-wrapper">
+    <div class="choose-pin-container mt-4">
+        
+        <div class="choose-pin-header">
+            <div>
+                <h2>{{ page_type }}</h2>
+                <p class="choose-pin-subtitle">Users {{ page_type|lower }} by <strong>{{ target_user.username }}</strong>.</p>
+            </div>
+            <a href="{% url 'users:profile' target_user.username %}" class="btn-follow btn-back">
+                Back to Profile
+            </a>
+        </div>
+
+        <div class="row choose-pin-row">
+            {% for found_user in users_list %}
+                <div class="col-12 col-sm-6 col-md-4">
+                    {% include 'sitecontent/user_card.html' with user=found_user %}
+                </div>
+            {% empty %}
+                <div class="col-12 pin-empty-state">
+                    <i class="bi bi-people requests-empty-icon fs-1 opacity-50 mb-3"></i>
+                    <h5 class="requests-empty-title">No {{ page_type|lower }} found</h5>
+                    <p class="requests-empty-text">This list is currently empty.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}

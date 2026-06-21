@@ -139,3 +139,38 @@ def reject_request(request, follow_id):
 
     return redirect('users:follow_requests')
 
+@login_required
+def follow_list(request, username, follow_type):
+    target_user = get_object_or_404(User, username=username)
+
+    can_see = True
+    if target_user.is_private and request.user != target_user:
+        is_following = Follow.objects.filter(follower=request.user, following=target_user, is_accepted=True).exists()
+        if not is_following:
+            can_see = False
+
+    if not can_see:
+        messages.error(request, "This account is private.")
+        return redirect('users:profile', username=username)
+
+    if follow_type == 'followers':
+        follows = Follow.objects.filter(following=target_user, is_accepted=True).select_related('follower')
+        users_list = [f.follower for f in follows]
+        page_title = 'Followers'
+    else:
+        follows = Follow.objects.filter(follower=target_user, is_accepted=True).select_related('following')
+        users_list = [f.following for f in follows]
+        page_title = 'Following'
+
+    accepted_following_ids = Follow.objects.filter(follower=request.user, is_accepted=True).values_list('following_id', flat=True)
+    pending_following_ids = Follow.objects.filter(follower=request.user, is_accepted=False).values_list('following_id', flat=True)
+
+    context = {
+        'target_user': target_user,
+        'page_type': page_title,
+        'users_list': users_list,
+        'accepted_following_ids': accepted_following_ids,
+        'pending_following_ids': pending_following_ids,
+    }
+    return render(request, 'users/follow_list.html', context)
+

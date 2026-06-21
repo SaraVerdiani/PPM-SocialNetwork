@@ -19,5 +19,9 @@ urlpatterns = [
     path('requests/<int:follow_id>/accept/', views.accept_request, name='accept_request'),
     path('requests/<int:follow_id>/reject/', views.reject_request, name='reject_request'),
 
+    path('profile/<str:username>/followers/', views.follow_list, {'follow_type': 'followers'}, name='followers'),
+
+    path('profile/<str:username>/following/', views.follow_list, {'follow_type': 'following'}, name='following'),
+
 
 ]

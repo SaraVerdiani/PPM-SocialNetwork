@@ -28,14 +28,15 @@
                         <span class="profile-counter">{{ posts|length }}</span>
                         <span>Posts</span>
                     </div>
-                    <div>
+
+                    <a href="{% url 'users:followers' profile_user.username %}" class="text-decoration-none text-dark profile-stat-link">
                         <span class="profile-counter">{{ followers_count }}</span>
                         <span>Follower</span>
-                    </div>
-                    <div>
+                    </a>
+                    <a href="{% url 'users:following' profile_user.username %}" class="text-decoration-none text-dark profile-stat-link">
                         <span class="profile-counter">{{ following_count }}</span>
                         <span>Following</span>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="profile-bio profile-bio-desktop">

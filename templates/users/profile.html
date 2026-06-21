@@ -110,5 +110,40 @@
         <p class="text-muted">Follow this account to see their photos and videos.</p>
     </div>
 {% endif %}
+{% if perms.users.can_ban_user and request.user != profile_user and not profile_user.is_superuser %}
+
+    <button type="button" class="btn btn-danger btn-edit-profile d-inline-block ms-2" data-bs-toggle="modal" data-bs-target="#banUserModal">
+        <i class="bi bi-hammer me-1"></i> Ban User
+    </button>
+
+    <div class="modal fade" id="banUserModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 shadow">
+
+          <div class="modal-header post-modal-header">
+            <h5 class="modal-title post-modal-title text-danger">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>Ban User?
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body post-modal-body">
+            <p class="post-modal-text">
+                Are you sure you want to ban <strong>{{ profile_user.username }}</strong>?<br>
+                They will not be able to log in anymore.
+            </p>
+
+            <form action="{% url 'users:ban_user' profile_user.username %}" method="POST" class="post-modal-actions">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger post-modal-btn">Yes, ban</button>
+                <button type="button" class="btn btn-light post-modal-btn" data-bs-dismiss="modal">Cancel</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endif %}
 </div>
 {% endblock %}

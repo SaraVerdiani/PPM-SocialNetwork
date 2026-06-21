@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
@@ -173,4 +173,22 @@ def follow_list(request, username, follow_type):
         'pending_following_ids': pending_following_ids,
     }
     return render(request, 'users/follow_list.html', context)
+
+
+@login_required
+@permission_required('users.can_ban_user', raise_exception=True)
+def ban_user(request, username):
+    if request.method == 'POST':
+        user_to_ban = get_object_or_404(User, username=username)
+
+        if user_to_ban.is_superuser:
+            messages.error(request, "You cannot ban an administrator.")
+        elif user_to_ban == request.user:
+            messages.error(request, "You cannot ban yourself.")
+        else:
+            user_to_ban.is_active = False
+            user_to_ban.save()
+            messages.success(request, f"User {username} has been successfully banned.")
+
+    return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
 

@@ -14,7 +14,7 @@
         </div>
 
         <div class="post-actions-top">
-            {% if request.user == post.author %}
+            {% if request.user == post.author or perms.users.can_delete_post %}
                 <a href="#" class="post-delete-btn" data-bs-toggle="modal" data-bs-target="#deletePostModal{{ post.id }}" title="Elimina post">
                     <i class="bi bi-trash post-action-icon"></i>
                 </a>

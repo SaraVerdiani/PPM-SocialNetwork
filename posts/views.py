@@ -1,5 +1,6 @@
 
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Post, Comment
 from django.views.generic import DetailView
@@ -96,8 +97,11 @@ def add_comment(request, post_id):
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
-    if request.user == post.author and request.method == 'POST':
-        post.delete()
+    if request.user == post.author or request.user.has_perm('users.can_delete_post'):
+        if request.method == 'POST':
+            post.delete()
+    else:
+        raise PermissionDenied
 
     referer = request.META.get('HTTP_REFERER', '/')
 
@@ -111,8 +115,11 @@ def delete_post(request, post_id):
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    if request.user == comment.author and request.method == 'POST':
-        comment.delete()
+    if request.user == comment.author or request.user.has_perm('users.can_delete_comment'):
+        if request.method == 'POST':
+            comment.delete()
+    else:
+        raise PermissionDenied
 
     return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
 

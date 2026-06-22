@@ -4,7 +4,7 @@
     <div class="post-header">
         <div class="post-author-info">
             <a href="{% url 'users:profile' post.author.username %}" class="post-author-link">
-                <img src="https://ui-avatars.com/api/?name={{ post.author.username }}&background=0D8ABC&color=fff" class="post-author-avatar" alt="Avatar">
+                <img src="https://ui-avatars.com/api/?name={{ post.author.username }}&background=0D8ABC&color=fff" class="post-author-avatar" alt="{{ post.author.username }}'s avatar">
 
                 <div class="post-author-text">
                     <span class="post-author-name">{{ post.author.username }}</span>
@@ -15,7 +15,7 @@
 
         <div class="post-actions-top">
             {% if request.user == post.author or perms.users.can_delete_post %}
-                <a href="#" class="post-delete-btn" data-bs-toggle="modal" data-bs-target="#deletePostModal{{ post.id }}" title="Elimina post">
+                <a href="#" class="post-delete-btn" data-bs-toggle="modal" data-bs-target="#deletePostModal{{ post.id }}" title="Delete post">
                     <i class="bi bi-trash post-action-icon"></i>
                 </a>
             {% else %}
@@ -25,16 +25,15 @@
     </div>
 
     <div class="post-content">
-        <p class="post-text-content">
-            {% if post.is_news %}
-                <div class="news-specific-content mb-3">
-                    <h4 class="fw-bold">{{ post.news.title }}</h4>
-                    {% if post.news.image_url %}
-                        <img src="{{ post.news.image_url }}" alt="Immagine Notizia" class="img-fluid rounded mb-2 w-100 object-fit-cover" style="max-height: 400px;">
-                    {% endif %}
-                </div>
-            {% endif %}
-            {{ post.description }}
+        {% if post.is_news %}
+            <div class="news-specific-content mb-3">
+                <h2 class="fw-bold">{{ post.news.title }}</h2>
+                {% if post.news.image_url %}
+                    <img src="{{ post.news.image_url }}" alt="News image" class="img-fluid rounded mb-2 w-100 object-fit-cover" style="max-height: 400px;">
+                {% endif %}
+            </div>
+        {% endif %}
+        <p class="post-text-content">{{ post.description }}</p>
     </div>
 
     <div class="post-interactions-bar">
@@ -63,7 +62,7 @@
 
         <form action="{% url 'posts:add_comment' post.id %}" method="POST" class="post-comment-form">
             {% csrf_token %}
-            <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=0D8ABC&color=fff" class="comment-author-avatar" alt="Tuo Avatar">
+            <img src="https://ui-avatars.com/api/?name={{ request.user.username }}&background=0D8ABC&color=fff" class="comment-author-avatar" alt="Your avatar">
             <div class="comment-input-wrapper">
                 {{ comment_form.text|as_crispy_field }}
             </div>
@@ -74,7 +73,7 @@
             {% for comment in post.comments.all %}
                 <div class="comment-item">
                     <a href="{% url 'users:profile' comment.author.username %}">
-                        <img src="https://ui-avatars.com/api/?name={{ comment.author.username }}&background=0D8ABC&color=fff" class="comment-user-avatar" alt="Avatar">
+                        <img src="https://ui-avatars.com/api/?name={{ comment.author.username }}&background=0D8ABC&color=fff" class="comment-user-avatar" alt="{{ comment.author.username }}'s avatar">
                     </a>
 
                     <div class="comment-bubble">
@@ -132,7 +131,7 @@
       <div class="modal-body custom-scroll-col likes-scroll-area">
         {% for like_user in post.likes.all %}
             <a href="{% url 'users:profile' like_user.username %}" class="like-user-row">
-                <img src="https://ui-avatars.com/api/?name={{ like_user.username }}&background=0D8ABC&color=fff" class="like-user-avatar" alt="Avatar">
+                <img src="https://ui-avatars.com/api/?name={{ like_user.username }}&background=0D8ABC&color=fff" class="like-user-avatar" alt="{{ like_user.username }}'s avatar">
                 <span class="like-user-name">{{ like_user.username }}</span>
             </a>
         {% empty %}

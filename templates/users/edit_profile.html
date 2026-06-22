@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 
-{% block title %}Modifica Profilo{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %}
 <div class="col-12 col-lg-10 edit-profile-wrapper">
@@ -15,7 +15,8 @@
         <form method="post" action="">
             {% csrf_token %}
 
-            <div class="row edit-profile-row g-3 g-lg-4"> <div class="col-lg-6 edit-profile-col">
+            <div class="row edit-profile-row g-3 g-lg-4">
+                <div class="col-lg-6 edit-profile-col">
                     <div class="edit-profile-panel d-flex flex-column h-100">
                         <h2 class="panel-title">Profile Description</h2>
                         {{ profile_form.bio|as_crispy_field }}

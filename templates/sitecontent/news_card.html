@@ -1,11 +1,11 @@
 <div class="trend-card position-relative">
-    <img src="{{ news.image_url|default:'https://picsum.photos/seed/news/80/80' }}" alt="Thumbnail" class="trend-img">
+    <img src="{{ news.image_url|default:'https://picsum.photos/seed/news/80/80' }}" alt="{{ news.title }}" class="trend-img">
     <div class="trend-text">
-        <span class="trend-title">
+        <h3 class="trend-title">
             <a href="{% url 'posts:post_detail' news.id %}" class="text-decoration-none text-dark stretched-link">
                 {{ news.title }}
             </a>
-        </span>
+        </h3>
 
         <span class="trend-source position-relative z-3">
             Author:

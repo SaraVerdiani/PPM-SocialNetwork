@@ -5,6 +5,8 @@
 {% block content %}
 <div class="col-12 col-md-8 col-lg-6 mx-auto pt-4">
 
+    <h1 class="visually-hidden">Post by {{ post.author.username }}</h1>
+
     <a href="{{ back_url }}" class="text-decoration-none text-dark d-inline-flex align-items-center gap-2 mb-4 fw-medium">
         <i class="bi bi-arrow-left fs-5"></i> Back
     </a>

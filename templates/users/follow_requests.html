@@ -18,7 +18,7 @@
 
                         <div class="request-user-info">
                             <a href="{% url 'users:profile' req.follower.username %}">
-                                <img src="https://ui-avatars.com/api/?name={{ req.follower.username }}&background=0D8ABC&color=fff" class="request-user-avatar" alt="Avatar">
+                                <img src="https://ui-avatars.com/api/?name={{ req.follower.username }}&background=0D8ABC&color=fff" class="request-user-avatar" alt="{{ req.follower.username }}'s avatar">
                             </a>
                             <div class="request-user-text">
                                 <a href="{% url 'users:profile' req.follower.username %}" class="request-username">
@@ -50,7 +50,7 @@
         {% else %}
             <div class="requests-empty-state">
                 <i class="bi bi-inbox requests-empty-icon"></i>
-                <h5 class="requests-empty-title">No pending requests</h5>
+                <h2 class="requests-empty-title">No pending requests</h2>
                 <p class="requests-empty-text">You don't have any new follow requests.</p>
             </div>
         {% endif %}

@@ -1,7 +1,7 @@
 <div class="user-card">
     <div class="user-profile-info">
         <a href="{% url 'users:profile' user.username %}">
-            <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=0D8ABC&color=fff" alt="Avatar" class="avatar-img">
+            <img src="https://ui-avatars.com/api/?name={{ user.username }}&background=0D8ABC&color=fff" alt="{{ user.username }}'s avatar" class="avatar-img">
         </a>
         <div class="user-text">
 

@@ -7,7 +7,7 @@
     <div class="choose-pin-container mt-4">
         <div class="choose-pin-header">
             <div>
-                <h2>{{ page_type }}</h2>
+                <h1>{{ page_type }}</h1>
                 <p class="choose-pin-subtitle">Users {{ page_type|lower }} by <strong>{{ target_user.username }}</strong>.</p>
             </div>
             <a href="{% url 'users:profile' target_user.username %}" class="btn-follow btn-back">
@@ -22,7 +22,7 @@
             {% empty %}
                 <div class="col-12 pin-empty-state">
                     <i class="bi bi-people requests-empty-icon fs-1 opacity-50 mb-3"></i>
-                    <h5 class="requests-empty-title">No {{ page_type|lower }} found</h5>
+                    <h2 class="requests-empty-title">No {{ page_type|lower }} found</h2>
                     <p class="requests-empty-text">This list is currently empty.</p>
                 </div>
             {% endfor %}

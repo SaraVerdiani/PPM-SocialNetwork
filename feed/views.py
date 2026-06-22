@@ -24,7 +24,7 @@ class HomeView(ListView):
             is_accepted=True
         ).values_list('following', flat=True)
 
-        queryset = Post.objects.filter(
+        queryset = Post.objects.filter(author__is_active = True).filter(
             Q(author__is_private=False) |
             Q(author=user) |
             Q(author__in=followed_users_ids)
@@ -92,7 +92,7 @@ class ExploreView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_authenticated:
-            context['suggested_users'] = User.objects.exclude(id=self.request.user.id).exclude(is_superuser=True)[:4]
+            context['suggested_users'] = User.objects.filter(is_active=True).exclude(id=self.request.user.id).exclude(is_superuser=True)[:4]
 
             context['accepted_following_ids'] = Follow.objects.filter(
                 follower=self.request.user,
@@ -105,7 +105,7 @@ class ExploreView(TemplateView):
             ).values_list('following_id', flat=True)
 
         else:
-            context['suggested_users'] = User.objects.exclude(is_superuser=True)[:4]
+            context['suggested_users'] = User.objects.filter(is_active=True).exclude(is_superuser=True)[:4]
             context['accepted_following_ids'] = []
             context['pending_following_ids'] = []
 

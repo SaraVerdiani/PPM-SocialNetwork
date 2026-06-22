@@ -5,7 +5,6 @@
 {% block content %}
 <div class="col-12 col-lg-10 profile-page-wrapper">
     <div class="choose-pin-container mt-4">
-        
         <div class="choose-pin-header">
             <div>
                 <h2>{{ page_type }}</h2>
@@ -15,7 +14,6 @@
                 Back to Profile
             </a>
         </div>
-
         <div class="row choose-pin-row">
             {% for found_user in users_list %}
                 <div class="col-12 col-sm-6 col-md-4">
@@ -29,7 +27,6 @@
                 </div>
             {% endfor %}
         </div>
-
     </div>
 </div>
 {% endblock %}

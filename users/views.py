@@ -192,3 +192,14 @@ def ban_user(request, username):
 
     return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
 
+@login_required
+@permission_required('users.can_ban_user', raise_exception=True)
+def unban_user(request, username):
+    if request.method == 'POST':
+        user_to_unban = get_object_or_404(User, username=username)
+        user_to_unban.is_active = True
+        user_to_unban.save()
+        messages.success(request, f"User {username} has been successfully unbanned.")
+
+    return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
+

@@ -2,49 +2,12 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, render, get_object_or_404
+from django.views.decorators.http import require_POST
+from .forms import PostForm, CommentForm
 from .models import Post, Comment
 from django.views.generic import DetailView
 from django.urls import reverse
-from django import forms
 from .models import Post
-
-
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['description']
-
-        labels = {
-            'description': '',
-        }
-
-        widgets = {
-            'description': forms.Textarea(attrs={
-                'class': 'border-0 shadow-none custom-textarea',
-                'rows': 6,
-                'placeholder': 'Describe your post',
-            }),
-        }
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['text']
-
-        widgets = {
-            'text': forms.TextInput(attrs={
-                'class': 'form-control rounded-pill bg-light border-0',
-                'placeholder': 'Write your comment...',
-                'autocomplete': 'off'
-            })
-        }
-
-        labels = {
-            'text': ''
-        }
-
-
 
 @login_required
 def create_post(request):
@@ -53,11 +16,8 @@ def create_post(request):
 
         if form.is_valid():
             new_post = form.save(commit=False)
-
             new_post.author = request.user
-
             new_post.save()
-
             return redirect('feed:home')
     else:
         form = PostForm()
@@ -66,10 +26,11 @@ def create_post(request):
 
 
 @login_required
+@require_POST
 def like_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
-    if request.user in post.likes.all():
+    if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
     else:
         post.likes.add(request.user)
@@ -78,33 +39,31 @@ def like_post(request, post_id):
 
 
 @login_required
+@require_POST
 def add_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
+    form = CommentForm(request.POST)
 
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.author = request.user
-            comment.save()
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.author = request.user
+        comment.save()
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
+@require_POST
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
     if request.user == post.author or request.user.has_perm('users.can_delete_post'):
-        if request.method == 'POST':
-            post.delete()
+        post.delete()
     else:
         raise PermissionDenied
 
     referer = request.META.get('HTTP_REFERER', '/')
-
     if f"/{post_id}/" in referer:
         return redirect('users:profile', username=request.user.username)
 
@@ -112,12 +71,12 @@ def delete_post(request, post_id):
 
 
 @login_required
+@require_POST
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
     if request.user == comment.author or request.user.has_perm('users.can_delete_comment'):
-        if request.method == 'POST':
-            comment.delete()
+        comment.delete()
     else:
         raise PermissionDenied
 
@@ -143,7 +102,8 @@ class PostDetailView(DetailView):
         )
 
         return context
-
+@login_required
+@require_POST
 def pin_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, author=request.user)
 

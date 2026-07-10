@@ -9,7 +9,6 @@ app_name = 'users'
 urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     path('login/', MyLoginView.as_view(redirect_authenticated_user=True), name='login'),
-
     path('logout/', views.logout_view, name='logout'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('profile/<str:username>/', feed.views.profile_view, name='profile'),
@@ -18,11 +17,9 @@ urlpatterns = [
     path('requests/', views.follow_requests, name='follow_requests'),
     path('requests/<int:follow_id>/accept/', views.accept_request, name='accept_request'),
     path('requests/<int:follow_id>/reject/', views.reject_request, name='reject_request'),
-
     path('profile/<str:username>/followers/', views.follow_list, {'follow_type': 'followers'}, name='followers'),
     path('profile/<str:username>/following/', views.follow_list, {'follow_type': 'following'}, name='following'),
     path('profile/<str:username>/ban', views.ban_user, name='ban_user'),
     path('profile/<str:username>/unban/', views.unban_user, name='unban_user'),
-
 
 ]

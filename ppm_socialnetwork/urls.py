@@ -25,7 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('', RedirectView.as_view(pattern_name='users:login')),
-
     path('feed/',include('feed.urls')),
     path('posts/', include('posts.urls')),
 

@@ -9,6 +9,15 @@
 
         {% if posts %}
             <div class="row feed-grid-row">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show login-alert" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+            {% endif %}
 
                 <div class="col-12 col-xl-6 custom-scroll-col">
                     {% for post in posts %}
@@ -25,7 +34,6 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-
             </div>
 
         {% else %}

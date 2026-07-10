@@ -1,4 +1,4 @@
-
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, render, get_object_or_404
@@ -18,6 +18,7 @@ def create_post(request):
             new_post = form.save(commit=False)
             new_post.author = request.user
             new_post.save()
+            messages.success(request, 'Post created successfully')
             return redirect('feed:home')
     else:
         form = PostForm()

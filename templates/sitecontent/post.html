@@ -18,8 +18,6 @@
                 <a href="#" class="post-delete-btn" data-bs-toggle="modal" data-bs-target="#deletePostModal{{ post.id }}" title="Delete post">
                     <i class="bi bi-trash post-action-icon"></i>
                 </a>
-            {% else %}
-                <i class="bi bi-three-dots post-options-icon"></i>
             {% endif %}
         </div>
     </div>
@@ -29,7 +27,7 @@
             <div class="news-specific-content mb-3">
                 <h2 class="fw-bold">{{ post.news.title }}</h2>
                 {% if post.news.image_url %}
-                    <img src="{{ post.news.image_url }}" alt="News image" class="img-fluid rounded mb-2 w-100 object-fit-cover" style="max-height: 400px;">
+                    <img src="{{ post.news.image_url }}" alt="News image" class="img-fluid rounded mb-2 object-fit-cover">
                 {% endif %}
             </div>
         {% endif %}

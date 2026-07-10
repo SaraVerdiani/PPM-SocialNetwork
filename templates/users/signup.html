@@ -5,28 +5,26 @@
 {% block title %}Sign up{% endblock %}
 
 {% block authentication %}
-<div class="authentication-wrapper">
-    <div class="signup-container">
-
-        <div class="authentication-title-container">
-            <h1>Social network</h1>
-        </div>
-
-        <div class="authentication-card">
-            <div class="authentication-card-body">
-                <h2 class="authentication-heading">Sign up</h2>
-
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary btn-signup">Register</button>
-                </form>
-
-                <div class="signup-footer">
-                    <p>Already signed up? <a href="{% url 'users:login' %}">Log in here</a></p>
-                </div>
-
+<div class="authentication-wrapper container">
+    <div class="row justify-content-center w-100 mx-auto">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="authentication-title-container text-center">
+                <h1>Social network</h1>
             </div>
+            <div class="authentication-card">
+                <div class="authentication-card-body">
+                    <h2 class="authentication-heading text-center">Sign up</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary btn-signup mt-3">Register</button>
+                    </form>
+                    <div class="signup-footer text-center mt-3">
+                        <p>Already signed up? <a href="{% url 'users:login' %}">Log in here</a></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -33,7 +33,6 @@ a {
 }
 
 .login-container {
-    width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -62,6 +61,7 @@ a {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
+    width: 100%;
 }
 
 .authentication-card-body {
@@ -1546,14 +1546,6 @@ a {
     .navbar-actions {
         gap: 1.5rem;
     }
-
-    .login-container {
-        width: 83.333333%;
-    }
-
-    .signup-container {
-        width: 50%;
-    }
 }
 
 @media (max-width: 900px) {
@@ -1574,14 +1566,6 @@ a {
     .btn-create-post {
         font-size: 1.2rem;
         padding: 0.6rem;
-    }
-
-    .login-container {
-        width: 25%;
-    }
-
-    .signup-container {
-        width: 25%;
     }
 }
 

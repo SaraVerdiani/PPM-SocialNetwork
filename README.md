@@ -50,13 +50,16 @@ L'admin, avendo accesso alla pagina di amministrazione di Django, può eseguire 
 *venv\Scripts\activate* per attivarlo. Su macOs eseguire *python3 -m venv venv* per la creazione e *source venv/bin/activate* per l'attivazione 
 3. Installare i requisiti attraverso il comando *pip install -r requirements.txt*
 4. Configurare la struttura del database applicando le migrazioni con *python manage.py migrate*
-5. I dati di test per provare le funzioni principali dell'applicazione sono stati salvati in delle fixture così da poter
-essere riproducibili. Per popolare il database eseguire il comando *python manage.py loaddata groups_fixture.json users_fixtures.json post_fixture.json news_fixture.json comments_fixture.json*
-6. Avviare il server con *python manage.py runserver*
+5. Avviare il server con *python manage.py runserver*
 
 ## Database
 
-Il database di test viene strutturato e popolato attraverso i punti 4 e 5 nelle istruzioni per l'installazione locale.
+Il database di test è il file *db.sqlite3* ed è già popolato con i dati necessari per provare le funzioni principali dell'applicazione.
+È inoltre possibile ricrearlo partendo da un database vuoto applicando prima le opportune migrazioni con il comando 
+nel punto 4 delle istruzioni per l'installazione locale e successivamente popolarlo attraverso l'utilizzo delle
+fixture contenenti i dati presenti nel database di test predefinito. Per fare ciò, eseguire il comando 
+*python manage.py loaddata groups_fixture.json users_fixtures.json post_fixture.json news_fixture.json comments_fixture.json*
+
 
 ## Account di prova
 ### Admin
@@ -79,3 +82,24 @@ Password: user12345
 ## Link di deploy
 
 https://ppm-socialnetwork-production.up.railway.app/users/login/
+
+# Esempio di flusso di test 
+
+## Utente
+
+1. Eseguire il login inserendo username e password
+2. Una volta autenticati, è possibile visualizzare la home: da qui si potranno vedere i post di altri utenti,
+aggiungere like e commenti cliccando sulle opportune icone.
+3. Una volta aggiunti like o commenti si possono eliminare sempre cliccando l'opportuna icona 
+4. Cliccando sul tasto "Aggiungi post" sarà possibile creare un post contenente del testo personalizzabile, che sarà 
+visibile ad altri utenti. 
+5. Successivamente, andando nella pagina "Esplora" si potranno visualizzare profili di altri utenti e seguirli attraverso
+il tasto "Follow", oppure visualizzare i loro profili cliccando sul nome utente.
+6. Se si desidera modificare il profilo, cliccare sul proprio nome utente e su "Edit profile". Da qui l'utente potrà 
+aggiungere una biografia, rendere il proprio account privato o fissare post.
+
+## Moderatore
+
+1. Eseguire il login con le credenziali da moderatore
+2. Una volta autenticati, sarà possibile eliminare post e commenti premendo le opportune icone.
+3. Cliccando sul profilo di un utente, si visualizzerà un tasto da cui è possibile vietargli l'accesso (ban).

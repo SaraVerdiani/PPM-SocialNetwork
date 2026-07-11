@@ -82,7 +82,7 @@
 
                             <div class="comment-meta">
                                 <span class="comment-date">{{ comment.created_at|date:"d M, H:i" }}</span>
-                                {% if request.user == comment.author %}
+                                {% if request.user == comment.author or perms.users.can_delete_comment %}
                                     <a href="#" class="comment-delete-btn" data-bs-toggle="modal" data-bs-target="#deleteCommentModal{{ comment.id }}">
                                         <i class="bi bi-x-circle-fill"></i>
                                     </a>
@@ -111,7 +111,6 @@
                     </div>
                   </div>
                 </div>
-
             {% empty %}
                 <p class="comments-empty-state">There are no comments.</p>
             {% endfor %}

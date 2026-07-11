@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '0gaFIjnWoEr4w2rwVDgmXtVpFdymmaFz1VSm0u5p-PU')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ["ppm-socialnetwork-production.up.railway.app", "127.0.0.1", "localhost"]
 CSRF_TRUSTED_ORIGINS = ['https://ppm-socialnetwork-production.up.railway.app']

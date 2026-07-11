@@ -10,7 +10,3 @@ env/
 # File di cache di Python
 __pycache__/
 *.pyc
-
-# Database SQLite locale
-data/
-*.sqlite3

@@ -42,3 +42,40 @@ Gli utenti appartenti a questo gruppo hanno dei permessi speciali:
 ### Ruolo: Admin
 
 L'admin, avendo accesso alla pagina di amministrazione di Django, può eseguire da essa una serie di operazioni.
+
+## Istruzioni per l'installazione locale
+
+1. Clonare la repository del progetto
+2. Creare l'ambiente virtuale: su Windows eseguire *python -m venv venv* oppure *py -m venv venv* per la creazione dell'ambiente e successivamente 
+*venv\Scripts\activate* per attivarlo. Su macOs eseguire *python3 -m venv venv* per la creazione e *source venv/bin/activate* per l'attivazione 
+3. Installare i requisiti attraverso il comando *pip install -r requirements.txt*
+4. Configurare la struttura del database applicando le migrazioni con *python manage.py migrate*
+5. I dati di test per provare le funzioni principali dell'applicazione sono stati salvati in delle fixture così da poter
+essere riproducibili. Per popolare il database eseguire il comando *python manage.py loaddata groups_fixture.json users_fixtures.json post_fixture.json news_fixture.json comments_fixture.json*
+6. Avviare il server con *python manage.py runserver*
+
+## Database
+
+Il database di test viene strutturato e popolato attraverso i punti 4 e 5 nelle istruzioni per l'installazione locale.
+
+## Account di prova
+### Admin
+Username: admin_demo
+
+Password: admin12345
+
+### Moderatore
+
+Username: manager_demo
+
+Password: manager12345
+
+### Utente
+
+Username: user_demo
+
+Password: user12345
+
+## Link di deploy
+
+https://ppm-socialnetwork-production.up.railway.app/users/login/

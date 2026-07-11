@@ -1,0 +1,304 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nsm26WTQnhL0mUfU0NlIVa$lvWCeJX3FptePQl2wMNmSsSVSWAS5kB1OHvcUPHqH9M=",
+    "last_login": "2026-07-11T14:05:02.556Z",
+    "is_superuser": true,
+    "username": "admin_demo",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:34:29.055Z",
+    "bio": null,
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$IaueXNaqUN70KEvxMVXGUe$hhlAfmZl81xuv77+kLVjBfDOKnxk4N9CU8tdinTiba4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user_demo",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:47:01.296Z",
+    "bio": null,
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$0piXunVWh7ScCJejjOT0XT$7q6O+gzDTNqI803pEA6KSyBK70cYDDgb8OyEaJ9Zbgk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "manager_demo",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:47:40Z",
+    "bio": null,
+    "is_private": false,
+    "groups": [
+      3
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$VtJKEnE6KXTPRCCnXVlopZ$f4Ybt0PkrCYgVbVmHiJpkovEB6r9VHzqtoDuuRJOX4s=",
+    "last_login": "2026-07-11T13:06:42.518Z",
+    "is_superuser": false,
+    "username": "user_1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:49:13.261Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nPypeshhEEINLADqD4BsWt$U1lahf9+qnBytq4rs93uHfIygdf0rT+26aXN/c+xdf0=",
+    "last_login": "2026-07-11T12:59:09.531Z",
+    "is_superuser": false,
+    "username": "user_2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:49:42.961Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$h0eyjIFioT0kVuhZYUuHj6$BDaiJXbyA4WSjmi8jrXkhWQf/yITA/+ZX+WRSxc3+y0=",
+    "last_login": "2026-07-11T13:07:00.440Z",
+    "is_superuser": false,
+    "username": "user_3",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:50:01.358Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$nV85QTkjRwTSwPYaheqNim$oYvbCulYlfr/wW3vT8Na+GdeD/4BWh2rpoTswKXd/oY=",
+    "last_login": "2026-07-11T12:59:32.938Z",
+    "is_superuser": false,
+    "username": "user_4",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:50:46.040Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$HfpVyoqqhXrCAbqXIUrE6G$boh1vdpWQ8NtZT+tUWV7ogTN3wV4vMn+zgfiUp9llsA=",
+    "last_login": "2026-07-11T12:59:44.606Z",
+    "is_superuser": false,
+    "username": "user_5",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:50:51.963Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$CSpQAe79NoPweR5u0BQljO$jF+mddJ/0xh5tMGItTRJI4rrICRSiWxu9zJQmx6xqFw=",
+    "last_login": "2026-07-11T12:59:53.740Z",
+    "is_superuser": false,
+    "username": "user_6",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:50:58.074Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$kk4LMlDZz3oqXOvrJW06wz$Wo/6FMson+9bbBdeJ6aBCZUd2OrdUpRMp4VR6e8Ce3U=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user_7",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:51:03.324Z",
+    "bio": null,
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$oBHfSzgJSoD6zFEs9fIchb$KG0YB9WZmDN+WJvfSga/iS+NtC7e9LxoipFJPxi65sU=",
+    "last_login": "2026-07-11T13:07:11.886Z",
+    "is_superuser": false,
+    "username": "user_8",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:51:08.630Z",
+    "bio": "",
+    "is_private": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$BQr7v2jKYnjoVTUpP8be4b$27KU3s/m4YYXM8XBrr9CLRrVhWKNW26+KfSuBFQmxUU=",
+    "last_login": "2026-07-11T13:00:09.943Z",
+    "is_superuser": false,
+    "username": "user_9",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:51:13.827Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$639JNLGNyFWNslOWqxSFm3$jnrN8AudbgCvpM0TuLUp8WYqRYV7kLushFbBLVZzT3U=",
+    "last_login": "2026-07-11T13:00:20.144Z",
+    "is_superuser": false,
+    "username": "user_10",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:51:18.873Z",
+    "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tempus turpis vitae dictum volutpat. Suspendisse porta sodales aliquet. Morbi pellentesque vestibulum lacus et mattis.",
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$LnsJdttNpYjq9NbadtnAlL$S5lpnSnkF8TQnj2AIQPy2w1HerKyYqlfhRayyhmtAco=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user_11",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T13:15:35.864Z",
+    "bio": null,
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 15,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$aA0UAxB7opAIWykdXu4k5X$3ocMARvFFNXIzDtJZjpAqsEPETFZclsLCQxSxtfkTyI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "News",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-07-11T12:53:07.990Z",
+    "bio": null,
+    "is_private": false,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

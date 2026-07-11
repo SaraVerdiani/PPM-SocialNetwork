@@ -55,9 +55,7 @@
     "date_joined": "2026-07-11T12:47:40Z",
     "bio": null,
     "is_private": false,
-    "groups": [
-      1
-    ],
+    "groups": [],
     "user_permissions": []
   }
 },

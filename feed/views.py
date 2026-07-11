@@ -70,6 +70,7 @@ def profile_view(request, username):
 
     followers_count = Follow.objects.filter(following=profile_user, is_accepted=True).count()
     following_count = Follow.objects.filter(follower=profile_user, is_accepted=True).count()
+    posts_count = Post.objects.filter(author=profile_user).count()
 
     context = {
         'profile_user': profile_user,
@@ -78,6 +79,7 @@ def profile_view(request, username):
         'is_following': is_following,
         'followers_count': followers_count,
         'following_count': following_count,
+        'posts_count': posts_count,
         'comment_form': CommentForm(),
         'follow_request_pending': follow_request_pending,
         'can_see_posts': can_see_posts,

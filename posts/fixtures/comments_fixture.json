@@ -1,0 +1,152 @@
+[
+  {
+    "model": "posts.comment",
+    "pk": 1,
+    "fields": {
+      "post": 1,
+      "author": 5,
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "created_at": "2026-07-09T15:00:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 2,
+    "fields": {
+      "post": 1,
+      "author": 8,
+      "text": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "created_at": "2026-07-09T16:30:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 3,
+    "fields": {
+      "post": 1,
+      "author": 12,
+      "text": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "created_at": "2026-07-09T17:00:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 4,
+    "fields": {
+      "post": 1,
+      "author": 9,
+      "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "created_at": "2026-07-09T18:00:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 5,
+    "fields": {
+      "post": 4,
+      "author": 12,
+      "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa.",
+      "created_at": "2026-07-11T08:45:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 6,
+    "fields": {
+      "post": 4,
+      "author": 5,
+      "text": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut.",
+      "created_at": "2026-07-11T09:10:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 7,
+    "fields": {
+      "post": 4,
+      "author": 10,
+      "text": "Ut enim ad minima veniam, quis nostrum exercitationem ullam.",
+      "created_at": "2026-07-11T09:30:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 8,
+    "fields": {
+      "post": 7,
+      "author": 14,
+      "text": "Quis autem vel eum iure reprehenderit qui in ea voluptate.",
+      "created_at": "2026-07-11T11:00:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 9,
+    "fields": {
+      "post": 8,
+      "author": 7,
+      "text": "At vero eos et accusamus et iusto odio dignissimos ducimus.",
+      "created_at": "2026-07-11T11:15:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 10,
+    "fields": {
+      "post": 8,
+      "author": 4,
+      "text": "Temporibus autem quibusdam et aut officiis debitis aut rerum.",
+      "created_at": "2026-07-11T11:20:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 11,
+    "fields": {
+      "post": 12,
+      "author": 9,
+      "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque.",
+      "created_at": "2026-07-11T11:30:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 12,
+    "fields": {
+      "post": 12,
+      "author": 6,
+      "text": "Nihil impedit quo minus id quod maxime placeat facere possimus.",
+      "created_at": "2026-07-11T11:40:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 13,
+    "fields": {
+      "post": 12,
+      "author": 11,
+      "text": "Omnis voluptas assumenda est, omnis dolor repellendus.",
+      "created_at": "2026-07-11T11:50:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 14,
+    "fields": {
+      "post": 15,
+      "author": 10,
+      "text": "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis.",
+      "created_at": "2026-07-11T11:45:00Z"
+    }
+  },
+  {
+    "model": "posts.comment",
+    "pk": 15,
+    "fields": {
+      "post": 15,
+      "author": 4,
+      "text": "Voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "created_at": "2026-07-11T11:55:00Z"
+    }
+  }
+]

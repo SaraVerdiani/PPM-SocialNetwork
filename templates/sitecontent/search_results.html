@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Results for "{{ query }}"{% endblock %}
+
+{% block content %}
+<div class="col-12 col-md-8 mx-auto search-container">
+    
+    <h2 class="search-title">Search Results</h2>
+
+    {% if query %}
+        <p class="search-meta-text">You searched for: <strong>{{ query }}</strong></p>
+
+        <div class="list-group shadow-sm search-list">
+            {% for result in results %}
+                <a href="{% url 'users:profile' result.username %}" class="list-group-item list-group-item-action search-list-item">
+                    <img src="https://ui-avatars.com/api/?name={{ result.username }}&background=0D8ABC&color=fff" 
+                         class="search-avatar" 
+                         alt="{{ result.username }}'s avatar">
+                    
+                    <div>
+                        <h5 class="search-username">{{ result.username }}</h5>
+                        {% if result.bio %}
+                            <small class="search-bio">{{ result.bio|truncatechars:50 }}</small>
+                        {% endif %}
+                    </div>
+                </a>
+            {% empty %}
+                <div class="alert alert-light search-empty-alert">
+                    No users found matching "<strong>{{ query }}</strong>".
+                </div>
+            {% endfor %}
+        </div>
+        
+    {% else %}
+        <div class="alert alert-info">
+            Enter a name in the top bar to search for a user.
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

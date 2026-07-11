@@ -176,3 +176,17 @@ def unban_user(request, username):
 
     return redirect(request.META.get('HTTP_REFERER', 'feed:home'))
 
+@login_required
+def search_users(request):
+    query = request.GET.get('q', '')
+    results = []
+
+    if query:
+        results = User.objects.filter(username__icontains=query, is_active=True)
+
+    context = {
+        'query': query,
+        'results': results
+    }
+    return render(request, 'sitecontent/search_results.html', context)
+

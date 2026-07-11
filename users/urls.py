@@ -21,5 +21,6 @@ urlpatterns = [
     path('profile/<str:username>/following/', views.follow_list, {'follow_type': 'following'}, name='following'),
     path('profile/<str:username>/ban', views.ban_user, name='ban_user'),
     path('profile/<str:username>/unban/', views.unban_user, name='unban_user'),
+    path('search/', views.search_users, name='search'),
 
 ]

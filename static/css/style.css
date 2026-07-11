@@ -1489,6 +1489,80 @@ a {
     background-color: var(--bg-panel)
 }
 
+.nav-search-wrapper {
+    flex-grow: 1;
+    max-width: 400px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.search-form {
+    display: flex;
+    width: 100%;
+}
+.search-input {
+    background-color: white;
+    border-color: var(--button-grey);
+}
+
+.nav-profile-link,
+.profile-handle {
+    display: none;
+}
+
+.brand-link,
+.navbar-actions,
+.search-form {
+    margin: 0;
+}
+
+.brand-text {
+    display: none;
+}
+
+.search-container {
+    margin-top: 1.5rem;
+}
+
+.search-title {
+    margin-bottom: 1.5rem;
+}
+
+.search-meta-text,
+.search-bio {
+    color: gray;
+}
+
+.search-list-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.search-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+}
+
+.search-username {
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.search-empty-alert {
+    text-align: center;
+    border: 1px solid var(--border-light);
+    margin-top: 1rem;
+}
+
+@media (min-width: 576px) {
+    .brand-text {
+        display: inline;
+    }
+}
+
 @media (max-width: 650px) {
     .users-grid {
         grid-template-columns: 1fr;
@@ -1546,6 +1620,11 @@ a {
     .navbar-actions {
         gap: 1.5rem;
     }
+
+    .nav-search-wrapper {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
 }
 
 @media (max-width: 900px) {
@@ -1566,6 +1645,11 @@ a {
     .btn-create-post {
         font-size: 1.2rem;
         padding: 0.6rem;
+    }
+
+    .nav-profile-link,
+    .profile-handle {
+        display: flex;
     }
 }
 

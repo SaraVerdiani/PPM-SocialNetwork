@@ -13,10 +13,12 @@ di follow-unfollow. Inoltre, all'utente autenticato viene data la possibilità d
 modificando la biografia e aggiungendo post da fissare in cima alla pagina personale, oppure rendendolo privato, così
 che solamente utenti approvati potranno visualizzare i propri contenuti.
 
-Sono presenti tre pagine principali. Nella pagina "Home" verranno 
+Sono presenti quattro pagine principali. Nella pagina "Home" verranno 
 visualizzati i post di vari utenti, mentre nella pagina "Esplora" si potranno vedere gli account di profili scelti
 in modo casuale e alcuni post di notizie. La pagina "Richieste" è visibile solamente agli utenti aventi un profilo 
 privato, ed è da quest'ultima che essi potranno accettare o rifiutare le richieste di segui da parte di altre persone.
+Infine è presente una pagina di gestione degli utenti bannati visibile solamente ai moderatori, dalla quale sono
+visualizzabili gli utenti a cui è stato vietato l'accesso. Da essa sarà possibile anche togliere i ban.
 
 ## Funzioni implementate
 
@@ -102,4 +104,7 @@ aggiungere una biografia, rendere il proprio account privato o fissare post.
 
 1. Eseguire il login con le credenziali da moderatore
 2. Una volta autenticati, sarà possibile eliminare post e commenti premendo le opportune icone.
-3. Cliccando sul profilo di un utente, si visualizzerà un tasto da cui è possibile vietargli l'accesso (ban).
+3. Cliccando sul profilo di un utente, si visualizzerà un tasto da cui è possibile vietargli l'accesso (ban). Gli utenti 
+bannati non saranno più visibili ad altri utenti nella pagina "Home" o nei risultati delle ricerche.
+4. Se si desidera togliere il ban, lo si può fare direttamente dal profilo dell'utente o dalla pagina "Manage banned users",
+la quale mostra gli utenti a cui è stato vietato l'accesso.

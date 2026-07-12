@@ -182,11 +182,22 @@ def search_users(request):
     results = []
 
     if query:
-        results = User.objects.filter(username__icontains=query, is_active=True)
+        if request.user.has_perm('users.can_ban_user'):
+            results = User.objects.filter(username__icontains=query)
+        else:
+            results = User.objects.filter(username__icontains=query, is_active=True)
 
     context = {
         'query': query,
         'results': results
     }
     return render(request, 'sitecontent/search_results.html', context)
+
+
+@login_required
+@permission_required('users.can_ban_user', raise_exception=True)
+def banned_users_list(request):
+    banned_users = User.objects.filter(is_active=False).order_by('-date_joined')
+
+    return render(request, 'users/banned_users.html', {'banned_users': banned_users})
 

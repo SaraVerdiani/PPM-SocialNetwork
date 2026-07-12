@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Banned Users{% endblock %}
+
+{% block content %}
+<div class="col-12 col-md-8 mx-auto banned-users-container">
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+    <h2 class="banned-users-title"><i class="bi bi-shield-lock-fill"></i> Banned Users</h2>
+
+    <div class="list-group banned-users-list">
+        {% for banned_user in banned_users %}
+
+            <div class="list-group-item list-group-item-danger banned-user-item">
+
+                <div class="banned-user-info">
+                    <div>
+                        <h5 class="banned-user-name">
+                            {{ banned_user.username }}
+                            <span class="badge bg-danger banned-badge">Banned</span>
+                        </h5>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#unbanModal-{{ banned_user.username }}">
+                    <i class="bi bi-unlock-fill"></i> Unban
+                </button>
+
+            </div> <div class="modal fade" id="unbanModal-{{ banned_user.username }}" tabindex="-1" aria-labelledby="unbanModalLabel-{{ banned_user.username }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content border-0 shadow">
+
+                        <div class="modal-header post-modal-header">
+                            <h5 class="modal-title post-modal-title text-success" id="unbanModalLabel-{{ banned_user.username }}">
+                                <i class="bi bi-check-circle-fill me-2"></i>Unban User?
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body post-modal-body text-center">
+                            <p class="post-modal-text mb-4">
+                                Are you sure you want to restore access for <strong>{{ banned_user.username }}</strong>?<br>
+                                They will be able to log in again.
+                            </p>
+
+                            <form action="{% url 'users:unban_user' banned_user.username %}" method="POST" class="d-flex justify-content-center gap-2 m-0">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success">Yes, unban</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        {% empty %}
+            <div class="alert alert-success empty-banned-alert">
+                <i class="bi bi-check-circle-fill empty-banned-icon"></i>
+                There are currently no banned users.
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

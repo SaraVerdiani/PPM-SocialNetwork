@@ -22,5 +22,6 @@ urlpatterns = [
     path('profile/<str:username>/ban', views.ban_user, name='ban_user'),
     path('profile/<str:username>/unban/', views.unban_user, name='unban_user'),
     path('search/', views.search_users, name='search'),
+    path('banned-users/', views.banned_users_list, name='banned_users'),
 
 ]

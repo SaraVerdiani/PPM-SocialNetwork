@@ -20,6 +20,8 @@
         </div>
     </div>
 
+{% if request.user != user %}
+
     <form action="{% url 'users:follow' user.username %}" method="POST" class="user-follow-form">
         {% csrf_token %}
 
@@ -35,4 +37,5 @@
         {% endif %}
 
     </form>
+{% endif %}
 </div>

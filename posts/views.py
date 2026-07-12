@@ -61,6 +61,7 @@ def delete_post(request, post_id):
 
     if request.user == post.author or request.user.has_perm('users.can_delete_post'):
         post.delete()
+        messages.success(request, 'Post deleted successfully')
     else:
         raise PermissionDenied
 
@@ -78,6 +79,7 @@ def delete_comment(request, comment_id):
 
     if request.user == comment.author or request.user.has_perm('users.can_delete_comment'):
         comment.delete()
+        messages.success(request, 'Comment deleted successfully')
     else:
         raise PermissionDenied
 
